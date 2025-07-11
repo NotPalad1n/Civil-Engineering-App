@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
 
         {/* Liens horizontaux */}
-        <div className="flex space-x-6 gap-10">
+        <div className="flex gap-10">
           <Link href="/" className="hover:text-white transition">Accueil</Link>
           <Link href="/about" className="hover:text-white transition">À propos</Link>
           <div>
