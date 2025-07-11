@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 text-center md:text-left">
         {/* Logo / Description */}
         <div>
-          <h2 className="text-xl font-semibold font-outfit text-white mb-2">CivilTools</h2>
+          <h2 className="text-xl font-semibold text-white mb-2">CivilTools</h2>
           <p className="text-sm text-gray-400">
             Outils de calcul de ferraillage pour le génie civil.
           </p>
