@@ -9,11 +9,11 @@ export default function Hero() {
       <p className="text-lg sm:text-xl text-black mb-8 font-outfit">
         Calculez les sections de ferraillage pour les poteaux, poutres, dalles et semelles.
       </p>
-      <a href="#tools">
+      <Link href="#tools">
         <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md shadow-md transition duration-300 cursor-pointer">
           Commencer les calculs
         </button>
-      </a>
+      </Link>
     </div>
   );
 }
