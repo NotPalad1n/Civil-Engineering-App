@@ -58,7 +58,7 @@ export default function ColonnePage() {
 
   return (
     <main className="max-w-xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6 text-center">
+      <h1 className="text-4xl font-bold mb-10 text-center">
         Calcul de ferraillage - Poteau
       </h1>
 
@@ -143,7 +143,7 @@ export default function ColonnePage() {
 
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition"
+          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition cursor-pointer"
         >
           Calculer l’acier requis
         </button>

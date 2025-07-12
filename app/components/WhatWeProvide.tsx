@@ -28,7 +28,7 @@ export default function WhatWeProvide() {
           {/* Item 3 */}
           <div className="flex-1 px-6 py-8 flex flex-col items-center text-center">
             <div className="text-4xl mb-4">🌐</div>
-            <h3 className="text-2xl font-semibold mb-2">Accès en ligne gratuit</h3>
+            <h3 className="text-2xl font-semibold mb-2">Accès en ligne</h3>
             <p className="text-sm text-gray-600">
               Tous les outils sont disponibles directement dans le navigateur, sans installation.
             </p>
