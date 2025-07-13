@@ -95,7 +95,7 @@ export default function FormPoteau({ formData, onChange, onSubmit, errorMessage 
         </div>
         <div>
           <label className="block mb-1">
-            Résistance de l'acier f<sub>e</sub> (MPa)
+            Résistance de l’acier f<sub>e</sub> (MPa)
           </label>
           <select
             name="fe"

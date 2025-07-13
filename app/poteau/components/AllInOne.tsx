@@ -310,7 +310,7 @@ export default function ColonnePage() {
               />
             </div>
             <div>
-              <label className="block mb-1">Résistance de l'acier f<sub>e</sub> (MPa)</label>
+              <label className="block mb-1">Résistance de l’acier f<sub>e</sub> (MPa)</label>
               <select
                 name="fe"
                 value={formData.fe}
