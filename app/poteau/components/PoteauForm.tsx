@@ -194,6 +194,9 @@ export default function ColonnePage() {
       }
     }
 
+    console.log(bestCombo);
+    console.log(bestSingle);
+
     const finalSuggestion =
       minSingleBars < minBars ||
       (minSingleBars === minBars && minSingleExcess < minExcess)
@@ -269,7 +272,7 @@ export default function ColonnePage() {
                 className={inputClass}
               />
             </div>
-                        <div>
+            <div>
               <label className="block mb-1">Largeur (cm)</label>
               <input
                 type="number"
@@ -296,7 +299,7 @@ export default function ColonnePage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block mb-1">Résistance béton f<sub>c28</sub> (MPa)</label>
+              <label className="block mb-1">Résistance du béton f<sub>c28</sub> (MPa)</label>
               <input
                 type="number"
                 inputMode="decimal"
@@ -307,7 +310,7 @@ export default function ColonnePage() {
               />
             </div>
             <div>
-              <label className="block mb-1">Résistance acier f<sub>e</sub> (MPa)</label>
+              <label className="block mb-1">Résistance de l'acier f<sub>e</sub> (MPa)</label>
               <select
                 name="fe"
                 value={formData.fe}
@@ -322,7 +325,7 @@ export default function ColonnePage() {
 
           <button
             type="submit"
-            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition"
+            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition"
           >
             Calculer
           </button>

@@ -1,12 +1,12 @@
 import Navbar from "../components/Navbar";
-import PoteauForm from "./components/PoteauForm";
+import PoteauPage from "./components/PoteauPage";
 import Footer from "../components/Footer";
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <PoteauForm />
+      <PoteauPage />
       <Footer />
     </div>
   );
