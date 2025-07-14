@@ -6,9 +6,8 @@ interface FormPoteauProps {
 }
 
 export default function FormPoteau({ formData, onChange, onSubmit, errorMessage }: FormPoteauProps) {
-  const inputClass =
-    'w-full border border-gray-300 rounded px-3 py-2 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
-  const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 bg-white text-gray-800';
+  const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
+  const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
 
   return (
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
