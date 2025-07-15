@@ -1,17 +1,17 @@
 'use client';
 import { useState } from 'react';
-import FormPoteau from './FormPoteau';
-import ResultatsPoteau from './ResultatsPoteau';
+import FormPoutre from './FormPoutre';
+import ResultatsPoutre from './ResultatsPoutre';
 import { calculerBaseResultats, FormData, BaseResults } from './calculs';
 import { suggererArmatures } from './armatures';
 
-export default function PoteauPage() {
+export default function PoutrePage() {
   const [formData, setFormData] = useState<Record<string, string>>({
-    hauteurPoteau: '',
-    facteurFlambement: '1',
-    largeur: '',
     longueur: '',
-    Nu: '',
+    largeur: '',
+    hauteur: '',
+    fissuration: 'peu nuisible',
+    Mu: '',
     fc28: '',
     fe: '500',
   });
@@ -30,13 +30,12 @@ export default function PoteauPage() {
 
   const validate = () => {
     const requiredFields = [
-      'hauteurPoteau',
-      'largeur',
       'longueur',
-      'Nu',
+      'largeur',
+      'hauteur',
+      'Mu',
       'fc28',
       'fe',
-      'facteurFlambement',
     ];
     for (const key of requiredFields) {
       const value = formData[key];
@@ -53,17 +52,17 @@ export default function PoteauPage() {
     if (!validate()) return;
 
     const data: FormData = {
-      hauteurPoteau: Number(formData.hauteurPoteau),
-      facteurFlambement: Number(formData.facteurFlambement),
       largeur: Number(formData.largeur),
       longueur: Number(formData.longueur),
-      Nu: Number(formData.Nu),
+      hauteur: Number(formData.hauteur),
+      fissuration: formData.fissuration,
+      Mu: Number(formData.Mu),
       fc28: Number(formData.fc28),
       fe: Number(formData.fe),
     };
 
     const base = calculerBaseResultats(data);
-    const suggestion = suggererArmatures(base.As, data.largeur, data.longueur);
+    const suggestion = suggererArmatures(0, data.largeur, data.longueur); // base.As, data.largeur, data.longueur
 
     setResults({ ...base, suggestion });
   };
@@ -71,11 +70,11 @@ export default function PoteauPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
-        Calcul de ferraillage - Poteau (BAEL)
+        Calcul de ferraillage - Poutre (BAEL)
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">
-        <FormPoteau
+        <FormPoutre
           formData={formData}
           onChange={handleChange}
           onSubmit={handleSubmit}
@@ -84,7 +83,7 @@ export default function PoteauPage() {
 
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
-        <ResultatsPoteau results={results} />
+        <ResultatsPoutre results={results} />
       </div>
     </main>
   );
