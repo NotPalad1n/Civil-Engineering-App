@@ -1,11 +1,6 @@
 interface Results {
-  largeur?: number;
-  longueur?: number;
-  hauteur?: number;
-  fissuration?: string;
-  Mu?: number;
-  fc28?: number;
-  fe?: number;
+  Ast?: number;
+  Asc?: number;
   suggestion?: string;
 }
 
@@ -19,13 +14,10 @@ export default function ResultatsPoutre({ results }: ResultatsPoteauProps) {
       {results ? (
         <>
           <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>longueur :</strong> {results.longueur} m</p>
-          <p><strong>largeur :</strong> {results.largeur} cm</p>  
-          <p><strong>hauteur :</strong> {results.hauteur} cm</p>
-          <p><strong>fissuration :</strong> {results.fissuration}</p>
-          <p><strong>M<sub>u</sub> :</strong> {results.Mu} kN m</p>
-          <p><strong>fc<sub>28</sub> :</strong> {results.fc28} MPa</p>
-          <p><strong>f<sub>e</sub> :</strong> {results.fe} MPa</p>
+
+          <p><strong>A<sub>st</sub> :</strong> {results.Ast} cm²</p>
+          <p><strong>A<sub>sc</sub> :</strong> {results.Asc} cm²</p>
+          
           <p><strong>Suggestion d’armature :</strong> {results.suggestion}</p>
         </>
       ) : (

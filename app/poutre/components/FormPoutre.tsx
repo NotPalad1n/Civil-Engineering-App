@@ -11,18 +11,6 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
 
   return (
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
-      
-      <div>
-        <label className="block mb-1">Longueur (m)</label>
-        <input
-          type="number"
-          inputMode="decimal"
-          name="longueur"
-          value={formData.longueur}
-          onChange={onChange}
-          className={inputClass}
-        />
-      </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
@@ -63,15 +51,44 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
         </select>
       </div>
 
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1">
+            Moment ultime M<sub>u</sub> (kN m)
+          </label>
+          <input
+            type="number"
+            inputMode="decimal"
+            name="Mu"
+            value={formData.Mu}
+            onChange={onChange}
+            className={inputClass}
+          />
+        </div>
+        <div>
+          <label className="block mb-1">
+            Moment service M<sub>ser</sub> (kN m)
+          </label>
+          <input
+            type="number"
+            inputMode="decimal"
+            name="Mser"
+            value={formData.Mser}
+            onChange={onChange}
+            className={inputClass}
+          />
+        </div>
+      </div>
+
       <div>
         <label className="block mb-1">
-          Moment ultime M<sub>u</sub> (kN m)
+          Effort ultime V<sub>u</sub> (kN)
         </label>
         <input
           type="number"
           inputMode="decimal"
-          name="Mu"
-          value={formData.Mu}
+          name="Vu"
+          value={formData.Vu}
           onChange={onChange}
           className={inputClass}
         />

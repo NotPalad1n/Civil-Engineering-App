@@ -7,11 +7,12 @@ import { suggererArmatures } from './armatures';
 
 export default function PoutrePage() {
   const [formData, setFormData] = useState<Record<string, string>>({
-    longueur: '',
     largeur: '',
     hauteur: '',
     fissuration: 'peu nuisible',
     Mu: '',
+    Mser: '',
+    Vu: '',
     fc28: '',
     fe: '500',
   });
@@ -30,7 +31,6 @@ export default function PoutrePage() {
 
   const validate = () => {
     const requiredFields = [
-      'longueur',
       'largeur',
       'hauteur',
       'Mu',
@@ -53,16 +53,17 @@ export default function PoutrePage() {
 
     const data: FormData = {
       largeur: Number(formData.largeur),
-      longueur: Number(formData.longueur),
       hauteur: Number(formData.hauteur),
       fissuration: formData.fissuration,
       Mu: Number(formData.Mu),
+      Mser: Number(formData.Mser),
+      Vu: Number(formData.Vu),
       fc28: Number(formData.fc28),
       fe: Number(formData.fe),
     };
 
     const base = calculerBaseResultats(data);
-    const suggestion = suggererArmatures(0, data.largeur, data.longueur); // base.As, data.largeur, data.longueur
+    const suggestion = suggererArmatures(0, data.largeur, data.hauteur); // base.As, data.largeur, data.longueur
 
     setResults({ ...base, suggestion });
   };
