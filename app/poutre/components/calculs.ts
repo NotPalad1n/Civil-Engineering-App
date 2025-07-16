@@ -12,6 +12,8 @@ export interface FormData {
 export interface BaseResults {
   Ast: number;
   Asc: number;
+  Asts: number;
+  Ascs: number;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
@@ -35,6 +37,9 @@ export function calculerBaseResultats(data: FormData): BaseResults {
 
   let Ast = 0;
   let Asc = 0;
+
+  let Asts = 0;
+  let Ascs = 0;
 
   if (fe === 500) {
     // epsilonL = 2.174/1000;
@@ -72,10 +77,38 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   Ast = Ast * 10000; // Convert m² to cm²
   Asc = Asc * 10000; // Convert m² to cm²
 
-  console.log(fissuration, Mser, Vu);
+  //
+  // Etat limite service : ELS
+  //
+
+  const ft28 = 0.6 + 0.06 * fc28; // MPa
+  const sigmaBC = 0.6* fc28; // MPa
+  const sigmaST = Math.min(2/3 * fe,110*Math.sqrt(1.6*ft28)); // MPa
+
+  const alphabar = (15*sigmaBC)/(15*sigmaBC + sigmaST);
+  const y1 = alphabar * d;
+  const Z = d*(1 - alphabar/3);
+  const Mrsb = 1/2 *b*y1*sigmaBC*Z * 1000; // kNm
+
+  if (Mser < Mrsb) {
+    Asts = Mser / (sigmaST * Z * 1000);
+    Ascs = 0;
+  }
+  else {
+    const sigmaSC = (15*sigmaBC*(y1 - dprime))/(y1);
+    Ascs = (Mser - Mrsb)/((d-dprime)*sigmaSC * 1000);
+    Asts = (Mrsb/Z + (Mser - Mrsb)/(d-dprime))*(1/(sigmaST * 1000));
+  }
+
+  Asts = Asts * 10000; // Convert m² to cm²
+  Ascs = Ascs * 10000; // Convert m² to cm²
+
+  console.log(fissuration, Vu);
 
   return {
     Ast: parseFloat(Ast.toFixed(2)),
     Asc: parseFloat(Asc.toFixed(2)),
+    Asts: parseFloat(Asts.toFixed(2)),
+    Ascs: parseFloat(Ascs.toFixed(2)),
   };
 }

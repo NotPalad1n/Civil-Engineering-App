@@ -1,6 +1,8 @@
 interface Results {
   Ast?: number;
   Asc?: number;
+  Asts?: number;
+  Ascs?: number;
   suggestion?: string;
 }
 
@@ -14,9 +16,15 @@ export default function ResultatsPoutre({ results }: ResultatsPoteauProps) {
       {results ? (
         <>
           <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
+          <p><strong>ELU :</strong></p>
 
-          <p><strong>A<sub>st</sub> :</strong> {results.Ast} cm²</p>
-          <p><strong>A<sub>sc</sub> :</strong> {results.Asc} cm²</p>
+          <p><strong>A<sub>st</sub> ultime :</strong> {results.Ast} cm²</p>
+          <p><strong>A<sub>sc</sub> ultime :</strong> {results.Asc} cm²</p>
+
+          <p><strong>ELS :</strong></p>
+
+          <p><strong>A<sub>st</sub> service :</strong> {results.Asts} cm²</p>
+          <p><strong>A<sub>sc</sub> service :</strong> {results.Ascs} cm²</p>
           
           <p><strong>Suggestion d’armature :</strong> {results.suggestion}</p>
         </>

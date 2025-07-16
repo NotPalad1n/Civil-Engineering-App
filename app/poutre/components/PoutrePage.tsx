@@ -33,7 +33,7 @@ export default function PoutrePage() {
     const requiredFields = [
       'largeur',
       'hauteur',
-      'Mu',
+      // 'Mu',
       'fc28',
       'fe',
     ];
