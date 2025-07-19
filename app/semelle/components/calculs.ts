@@ -1,3 +1,5 @@
+import { log } from "console";
+
 export interface FormData {
   largeur: number;
   longueur: number;
@@ -39,13 +41,13 @@ export function calculerBaseResultats(data: FormData): BaseResults {
 
   const Pp = A*B*h*25/1000; // MN
   
-  if (Nser + Pp / A * B > contrainte) 
+  if ((Nser + Pp) / (A * B) > contrainte) 
   {
-    message: 'La contrainte admissible du sol est dépassée. Veuillez redimentionner la section de la semelle.';
+    message = "La contrainte admissible du sol est dépassée. Veuillez redimentionner la section de la semelle.";
   }
-  if (Nser + Pp / A * B <= contrainte) 
+  else if ((Nser + Pp) / (A * B) <= contrainte) 
   {
-    message: 'La contrainte admissible du sol est vérifiée.';
+    message = "La contrainte admissible du sol est vérifiée.";
   }
 
   return {
