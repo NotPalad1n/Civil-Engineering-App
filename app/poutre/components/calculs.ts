@@ -14,6 +14,10 @@ export interface BaseResults {
   Asc: number;
   Asts: number;
   Ascs: number;
+  Stmax?: number;
+  St?: number;
+  phiT?: number;
+  message?: string;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
@@ -40,6 +44,8 @@ export function calculerBaseResultats(data: FormData): BaseResults {
 
   let Asts = 0;
   let Ascs = 0;
+
+  let message = "";
 
   if (fe === 500) {
     // epsilonL = 2.174/1000;
@@ -103,12 +109,55 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   Asts = Asts * 10000; // Convert m² to cm²
   Ascs = Ascs * 10000; // Convert m² to cm²
 
-  console.log(fissuration, Vu);
+
+  //
+  // Effort tranchant
+  //
+
+  const tauU = Vu / (b * d * 1000) ; // MPa
+
+  if (tauU > Math.min(0.2*fc28/1.5, 5) && fissuration === 'peu nuisible') // MPa
+  {
+    console.log("Il faut redimentionner la section.");
+  }
+
+  else if (tauU > Math.min(0.15*fc28/1.5, 4) && fissuration === 'prejudiciable') // MPa
+  {
+    console.log("Il faut redimentionner la section.");
+  }
+  else if (tauU > Math.min(0.15*fc28/1.5, 4) && fissuration === 'tres prejudiciable') // MPa
+  {
+    console.log("Il faut redimentionner la section.");
+  }
+
+  const phiT = Math.min(h*10/35, 8, b*1000/10); //mm
+
+  const n = 3; // nombre de branches verticales
+  
+  const Ai = Math.PI*(0.8**2)/4; //cm²
+  const At = n * Ai;
+  let Stmax = Math.min(0.9 * d * 100, 40, At*fe/( 0.4 * b * 100 )); // cm
+  let St = 0.9*At*fe/(1.15* b * 100 *(tauU - 0.3*ft28)) // cm
+
+  Stmax = Math.floor(parseFloat((Stmax/2).toFixed(2)) * 2) / 2;
+  St = Math.floor(parseFloat((St/2).toFixed(2)) * 2) / 2;
+
+  if (St > Stmax) {
+    message = "Le diametre des armatures est : " + phiT + " mm\nEt le 1er cour a " + Stmax + " cm, et les autres à " + Stmax + " cm"
+  }
+  else
+  {
+    message = "Le diametre des armatures est : " + phiT + " mm\nEt le 1er cour a " + St + " cm, et les autres suivant la serie de Caquot ";
+  }
 
   return {
     Ast: parseFloat(Ast.toFixed(2)),
     Asc: parseFloat(Asc.toFixed(2)),
     Asts: parseFloat(Asts.toFixed(2)),
     Ascs: parseFloat(Ascs.toFixed(2)),
+    Stmax: parseFloat(Stmax.toFixed(2)),
+    St: parseFloat(St.toFixed(2)),  
+    phiT: parseFloat(phiT.toFixed(2)),
+    message: message,
   };
 }

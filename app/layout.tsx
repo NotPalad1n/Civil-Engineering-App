@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 import { Outfit } from "next/font/google";
 
@@ -21,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${OutfitFont.className}`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

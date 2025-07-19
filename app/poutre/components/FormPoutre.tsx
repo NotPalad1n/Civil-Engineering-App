@@ -45,9 +45,9 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
           onChange={onChange}
           className={selectClass}
         >
-          <option value="peu nuisible">peu nuisible</option>
-          <option value="prejudiciable">préjudiciable</option>
-          <option value="tres prejudiciable">très préjudiciable</option>
+          <option value="peu nuisible">Peu nuisible</option>
+          <option value="prejudiciable">Préjudiciable</option>
+          <option value="tres prejudiciable">Très préjudiciable</option>
         </select>
       </div>
 

@@ -69,7 +69,7 @@ export default function PoutrePage() {
   };
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10">
+    <main className="max-w-6xl mx-auto px-4 py-10 mb-15">
       <h1 className="text-4xl font-bold mb-10 text-center">
         Calcul de ferraillage - Poutre (BAEL)
       </h1>
