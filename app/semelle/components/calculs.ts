@@ -1,5 +1,3 @@
-import { log } from "console";
-
 export interface FormData {
   largeur: number;
   longueur: number;
