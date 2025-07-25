@@ -31,7 +31,7 @@ export default function ResultatsDalle({ results }: ResultatsDalleProps) {
           <p><strong>A<sub>sty</sub> :</strong> {results.Asty} cm² par mètre</p>
           <p><strong>A<sub>scy</sub> :</strong> {results.Ascy} cm² par mètre</p>
 
-          <p><strong>Armatures d'âme :</strong></p>
+          <p><strong>Armatures d’âme :</strong></p>
 
           <p className="whitespace-pre-line">{results.message}</p>
 
