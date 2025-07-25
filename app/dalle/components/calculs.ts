@@ -31,6 +31,8 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   const fc28 = data.fc28; // MPa
   const fe = data.fe; // MPa
 
+  console.log(Pser);
+
   //
   // Dalle things
   //
