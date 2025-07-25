@@ -1,7 +1,9 @@
+import DallePage from "./components/DallePage";
+
 export default function Home() {
   return (
     <div>
-        Dalle
+        <DallePage />
     </div>
   );
 }
