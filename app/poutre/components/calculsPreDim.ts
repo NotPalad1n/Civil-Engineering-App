@@ -1,5 +1,3 @@
-import { Jersey_25 } from "next/font/google";
-
 export interface PreDimFormData {
   longueur: number;
   forme: string;
@@ -18,9 +16,9 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     const forme = data.forme;
     const chargement = data.chargement;
 
-    let b = 25;
+    const b = 25;
+    const message = "Vous pouver ajuster b selon votre cas."
     let h = 0;
-    let message = "Vous pouver ajuster b selon votre cas."
 
     if(forme === "Isolée"){
         if(chargement === "CC"){
