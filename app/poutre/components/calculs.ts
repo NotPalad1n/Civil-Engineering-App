@@ -14,10 +14,10 @@ export interface BaseResults {
   Asc: number;
   Asts: number;
   Ascs: number;
-  Stmax?: number;
-  St?: number;
-  phiT?: number;
-  message?: string;
+  Stmax: number;
+  St: number;
+  phiT: number;
+  message: string;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
