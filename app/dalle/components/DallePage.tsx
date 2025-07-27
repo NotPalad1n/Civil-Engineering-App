@@ -136,7 +136,7 @@ export default function DallePage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
-        Calcul de ferraillage - Dalle pleine (BAEL)
+        Calcul Béton Armé - Dalle pleine (BAEL 91 mod 99)
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">

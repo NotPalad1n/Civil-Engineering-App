@@ -41,19 +41,9 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-          <div>
-          <label className="block mb-1">Longueur A (m)</label>
-          <input
-            type="number"
-            inputMode="decimal"
-            name="longueur"
-            value={formData.longueur}
-            onChange={onChange}
-            className={inputClass}
-          />
-        </div>
+        
         <div>
-          <label className="block mb-1">Largeur B (m)</label>
+          <label className="block mb-1">Largeur A (m)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -63,6 +53,19 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
             className={inputClass}
           />
         </div>
+
+        <div>
+          <label className="block mb-1">Longueur B (m)</label>
+          <input
+            type="number"
+            inputMode="decimal"
+            name="longueur"
+            value={formData.longueur}
+            onChange={onChange}
+            className={inputClass}
+          />
+        </div>
+
       </div>
 
       <div>

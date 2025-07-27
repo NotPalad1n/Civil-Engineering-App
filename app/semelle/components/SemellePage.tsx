@@ -146,7 +146,7 @@ export default function SemellePage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
-        Calcul de ferraillage - Semelle isolée (BAEL)
+        Calcul Béton Armé - Semelle isolée (BAEL 91 mod 99)
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">

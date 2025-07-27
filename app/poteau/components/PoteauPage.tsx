@@ -134,7 +134,7 @@ export default function PoteauPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
-        Calcul de ferraillage - Poteau (BAEL)
+        Calcul Béton Armé - Poteau (BAEL 91 mod 99)
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">
