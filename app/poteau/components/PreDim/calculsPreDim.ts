@@ -20,7 +20,7 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     let a = 0;
     let b = 0;
 
-    const S = Nu / (1000 * 10) ; // formule forfitaire avec Nu en MN
+    const S = Nu / (1000 * 15) ; // formule forfitaire avec Nu en MN
 
     // Carré
     
@@ -35,11 +35,16 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     a = a * 100;
     b = b * 100;
 
-    a = Math.round(a / 5) * 5;
-    b = Math.round(b / 5) * 5;
+    a = Math.ceil(a / 5) * 5;
+    b = Math.ceil(b / 5) * 5;
 
-    asq = Math.round(asq / 5) * 5;
-    bsq = Math.round(bsq / 5) * 5;
+    asq = Math.ceil(asq / 5) * 5;
+    bsq = Math.ceil(bsq / 5) * 5;
+
+    a = Math.max(25, a);
+    b = Math.max(25, b);
+    asq = Math.max(25, asq);
+    bsq = Math.max(25, bsq);
 
     return {
     asq: parseFloat(asq.toFixed(2)),

@@ -14,7 +14,7 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block mb-1">Largeur (cm)</label>
+          <label className="block mb-1">Largeur b (cm)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -25,7 +25,7 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
           />
         </div>
         <div>
-          <label className="block mb-1">Hauteur (cm)</label>
+          <label className="block mb-1">Hauteur h (cm)</label>
           <input
             type="number"
             inputMode="decimal"

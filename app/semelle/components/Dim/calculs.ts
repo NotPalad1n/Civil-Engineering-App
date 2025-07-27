@@ -7,7 +7,6 @@ export interface FormData {
   contrainte: number;
   Nu: number;
   Nser: number;
-  // fc28: number;
   fe: number;
 }
 
@@ -24,10 +23,9 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   const a = data.largeurPoteau / 100; // m
   const b = data.longueurPoteau / 100; // m
   const d = data.hauteur; // m
-  const Nu = data.Nu; // MN
-  const Nser = data.Nser; // MN
+  const Nu = data.Nu / 1000; // MN
+  const Nser = data.Nser / 1000; // MN
   const contrainte = data.contrainte; // MPa
-  // const fc28 = data.fc28; // MPa
   const fe = data.fe; // MPa
 
   const h = d + 0.05; // m

@@ -13,19 +13,9 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
 
       <div className="grid grid-cols-2 gap-4">
-          <div>
-          <label className="block mb-1">Longueur Poteau (cm)</label>
-          <input
-            type="number"
-            inputMode="decimal"
-            name="longueurPoteau"
-            value={formData.longueurPoteau}
-            onChange={onChange}
-            className={inputClass}
-          />
-        </div>
+
         <div>
-          <label className="block mb-1">Largeur Poteau (cm)</label>
+          <label className="block mb-1">Largeur Poteau a (cm)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -35,11 +25,24 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
             className={inputClass}
           />
         </div>
+
+        <div>
+          <label className="block mb-1">Longueur Poteau b (cm)</label>
+          <input
+            type="number"
+            inputMode="decimal"
+            name="longueurPoteau"
+            value={formData.longueurPoteau}
+            onChange={onChange}
+            className={inputClass}
+          />
+        </div>
+
       </div>
 
       <div className="grid grid-cols-2 gap-4">
           <div>
-          <label className="block mb-1">Longueur (m)</label>
+          <label className="block mb-1">Longueur A (m)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -50,7 +53,7 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
           />
         </div>
         <div>
-          <label className="block mb-1">Largeur (m)</label>
+          <label className="block mb-1">Largeur B (m)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -63,7 +66,7 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
       </div>
 
       <div>
-        <label className="block mb-1">Hauteur utile (m)</label>
+        <label className="block mb-1">Hauteur utile d (m)</label>
         <input
           type="number"
           inputMode="decimal"
@@ -76,7 +79,7 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
 
       <div>
         <label className="block mb-1">
-          Contrainte admissible du sol (MPa)
+          Contrainte admissible du sol σ<sub>ser</sub> (MPa)
         </label>
         <input
           type="number"
@@ -89,9 +92,10 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
       </div>
 
       <div className="grid grid-cols-2 gap-4">
+
         <div>
           <label className="block mb-1">
-            Effort ultime N<sub>u</sub> (MN)
+            Effort ultime N<sub>u</sub> (kN)
           </label>
           <input
             type="number"
@@ -102,9 +106,10 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
             className={inputClass}
           />
         </div>
+
         <div>
           <label className="block mb-1">
-            Effort service N<sub>ser</sub> (MN)
+            Effort service N<sub>ser</sub> (kN)
           </label>
           <input
             type="number"
@@ -115,38 +120,23 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
             className={inputClass}
           />
         </div>
+
       </div>
 
-      {/* <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block mb-1">
-            Résistance du béton f<sub>c28</sub> (MPa)
-          </label>
-          <input
-            type="number"
-            inputMode="decimal"
-            name="fc28"
-            value={formData.fc28}
-            onChange={onChange}
-            className={inputClass}
-          />
-        </div>
-      </div> */}
-
-        <div>
-          <label className="block mb-1">
-            Résistance de l’acier f<sub>e</sub> (MPa)
-          </label>
-          <select
-            name="fe"
-            value={formData.fe}
-            onChange={onChange}
-            className={selectClass}
-          >
-            <option value="400">400</option>
-            <option value="500">500</option>
-          </select>
-        </div>
+      <div>
+        <label className="block mb-1">
+          Résistance de l’acier f<sub>e</sub> (MPa)
+        </label>
+        <select
+          name="fe"
+          value={formData.fe}
+          onChange={onChange}
+          className={selectClass}
+        >
+          <option value="400">400</option>
+          <option value="500">500</option>
+        </select>
+      </div>
 
       <button
         type="submit"
