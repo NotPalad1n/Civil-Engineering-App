@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import FormPoutre from './FormPoutre';
-import FormPreDimPoutre from './FormPreDimPoutre';
-import ResultatsPoutre from './ResultatsPoutre';
-import ResultatsPreDimPoutre from './ResultatsPreDimPoutre'
-import { calculerBaseResultats, FormData, BaseResults } from './calculs';
-import { calculerPreDimResultats, PreDimFormData, PreDimResults } from './calculsPreDim';
+import FormPoutre from './Dim/FormPoutre';
+import FormPreDimPoutre from './PreDim/FormPreDimPoutre';
+import ResultatsPoutre from './Dim/ResultatsPoutre';
+import ResultatsPreDimPoutre from './PreDim/ResultatsPreDimPoutre'
+import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
+import { calculerPreDimResultats, PreDimFormData, PreDimResults } from './PreDim/calculsPreDim';
 import { suggererArmatures } from './armatures';
 
 export default function PoutrePage() {

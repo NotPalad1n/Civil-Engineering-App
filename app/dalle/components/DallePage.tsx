@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import FormDalle from './FormDalle';
-import FormPreDimDalle from './FormPreDimDalle';
-import ResultatsDalle from './ResultatsDalle';
-import ResultatsPreDimDalle from './ResultatsPreDimDalle';
-import { calculerBaseResultats, FormData, BaseResults } from './calculs';
-import { calculerPreDimResultats, PreDimFormData, PreDimResults } from './calculsPreDim';
+import FormDalle from './Dim/FormDalle';
+import FormPreDimDalle from './PreDim/FormPreDimDalle';
+import ResultatsDalle from './Dim/ResultatsDalle';
+import ResultatsPreDimDalle from './PreDim/ResultatsPreDimDalle';
+import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
+import { calculerPreDimResultats, PreDimFormData, PreDimResults } from './PreDim/calculsPreDim';
 import { suggererArmatures } from './armatures';
 
 export default function DallePage() {

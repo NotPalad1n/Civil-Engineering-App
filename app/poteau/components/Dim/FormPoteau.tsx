@@ -11,48 +11,38 @@ export default function FormPoteau({ formData, onChange, onSubmit, errorMessage 
 
   return (
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block mb-1">Hauteur du poteau (m)</label>
-          <input
-            type="number"
-            inputMode="decimal"
-            name="hauteurPoteau"
-            value={formData.hauteurPoteau}
-            onChange={onChange}
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Facteur de flambement</label>
-          <select
-            name="facteurFlambement"
-            value={formData.facteurFlambement}
-            onChange={onChange}
-            className={selectClass}
-          >
-            <option value="2">2</option>
-            <option value="1">1</option>
-            <option value="0.707">0.707</option>
-            <option value="0.5">0.5</option>
-          </select>
-        </div>
+      
+      <div>
+        <label className="block mb-1">Hauteur du poteau h (m)</label>
+        <input
+          type="number"
+          inputMode="decimal"
+          name="hauteurPoteau"
+          value={formData.hauteurPoteau}
+          onChange={onChange}
+          className={inputClass}
+        />
+      </div>
+
+      <div>
+        <label className="block mb-1">Facteur de flambement</label>
+        <select
+          name="facteurFlambement"
+          value={formData.facteurFlambement}
+          onChange={onChange}
+          className={selectClass}
+        >
+          <option value="2">Encastré - libre (2)</option>
+          <option value="1">Articulé - Articulé (1)</option>
+          <option value="0.707">Encastré - Articulé (0.707)</option>
+          <option value="0.5">Encastré - Encastré (0.5)</option>
+        </select>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
+
         <div>
-          <label className="block mb-1">Longueur (cm)</label>
-          <input
-            type="number"
-            inputMode="decimal"
-            name="longueur"
-            value={formData.longueur}
-            onChange={onChange}
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label className="block mb-1">Largeur (cm)</label>
+          <label className="block mb-1">Largeur a (cm)</label>
           <input
             type="number"
             inputMode="decimal"
@@ -62,6 +52,19 @@ export default function FormPoteau({ formData, onChange, onSubmit, errorMessage 
             className={inputClass}
           />
         </div>
+
+        <div>
+          <label className="block mb-1">Longueur b (cm)</label>
+          <input
+            type="number"
+            inputMode="decimal"
+            name="longueur"
+            value={formData.longueur}
+            onChange={onChange}
+            className={inputClass}
+          />
+        </div>
+
       </div>
 
       <div>
