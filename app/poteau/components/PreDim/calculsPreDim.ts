@@ -20,7 +20,7 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     let a = 0;
     let b = 0;
 
-    const S = Nu / (1000 * 15) ; // formule forfitaire avec Nu en MN
+    const S = Nu / (1000 * 18) ; // formule forfitaire avec Nu en MN
 
     // Carré
     

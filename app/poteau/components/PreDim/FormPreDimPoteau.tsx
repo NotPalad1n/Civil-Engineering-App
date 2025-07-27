@@ -38,7 +38,7 @@ export default function FormPreDimPoteau({ formData, onChange, onSubmit, errorMe
 
       <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition cursor-pointer"
+          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition font-semibold cursor-pointer"
       >
           Calculer
       </button>

@@ -143,7 +143,7 @@ export default function FormSemelle({ formData, onChange, onSubmit, errorMessage
 
       <button
         type="submit"
-        className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition"
+        className="mt-4 w-full font-semibold cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition"
       >
         Calculer
       </button>

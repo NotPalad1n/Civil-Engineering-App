@@ -15,12 +15,12 @@ export default function ResultatsPreDimPoteau({ results }: ResultatsPoteauProps)
       {results ? (
         <>
           <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>Dimensions du poteau dans le cas carré :</strong></p>
+          <p><strong>Dimensions du poteau au cas carré :</strong></p>
 
           <p><strong>a :</strong> {results.asq} cm</p>
           <p><strong>b :</strong> {results.bsq} cm</p>
 
-          <p><strong>Dimensions du poteau dans le cas rectangle :</strong></p>
+          <p><strong>Dimensions du poteau au cas rectangle :</strong></p>
 
           <p><strong>a :</strong> {results.a} cm</p>
           <p><strong>b :</strong> {results.b} cm</p>

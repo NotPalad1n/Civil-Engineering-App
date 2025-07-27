@@ -30,6 +30,7 @@ export default function Tools() {
     <div className="bg-white py-16 px-6" id="tools">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10">Outils</h2>
+        <p className="text-lg font-medium text-center mb-10 cursor-default">BAEL 91 mod 99</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {tools.map((tool) => (
             <ToolCard
