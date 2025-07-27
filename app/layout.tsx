@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${OutfitFont.className}`}>
+      <body className={`${OutfitFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll`}>
         <Navbar />
         {children}
         <Footer />

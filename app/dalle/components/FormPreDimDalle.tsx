@@ -1,11 +1,11 @@
-interface FormPoutreProps {
+interface FormDalleProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
   errorMessage: string | null;
 }
 
-export default function FormPreDimPoutre({ formData, onChange, onSubmit, errorMessage }: FormPoutreProps) {
+export default function FormPreDimDalle({ formData, onChange, onSubmit, errorMessage }: FormDalleProps) {
   const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
   const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
 
@@ -25,6 +25,18 @@ export default function FormPreDimPoutre({ formData, onChange, onSubmit, errorMe
         </div>
 
         <div>
+            <label className="block mb-1">Largeur (m)</label>
+            <input
+            type="number"
+            inputMode="decimal"
+            name="largeur"
+            value={formData.largeur}
+            onChange={onChange}
+            className={inputClass}
+            />
+        </div>
+
+        <div>
             <label className="block mb-1">Forme de la poutre</label>
             <select
             name="forme"
@@ -34,20 +46,6 @@ export default function FormPreDimPoutre({ formData, onChange, onSubmit, errorMe
             >
             <option value="Isolée">Isolée</option>
             <option value="Continue">Continue</option>
-            </select>
-        </div>
-
-        <div>
-            <label className="block mb-1">Type de chargement</label>
-            <select
-            name="chargement"
-            value={formData.chargement}
-            onChange={onChange}
-            className={selectClass}
-            >
-            <option value="CC">Chargée - Chargée</option>
-            <option value="CD">Chargée - Dechargée</option>
-            <option value="DD">Dechargée - Dechargée</option>
             </select>
         </div>
 

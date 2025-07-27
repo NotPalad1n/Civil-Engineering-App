@@ -133,7 +133,7 @@ export default function PoutrePage() {
   //
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10 mb-15">
+    <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
         Calcul de ferraillage - Poutre (BAEL)
       </h1>
@@ -142,11 +142,11 @@ export default function PoutrePage() {
         
         <div className='w-full lg:w-1/2'>
 
-          <div className="flex space-x-4 justify-center mb-8">
+          <div className="flex space-x-4 justify-center mb-10">
 
             <button
               onClick={() => setActiveTab('predim')}
-              className={`px-4 py-2 rounded font-semibold cursor-pointer text-xs min-w-40
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
               ${activeTab === 'predim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
               Pré-dimensionnement
@@ -154,7 +154,7 @@ export default function PoutrePage() {
 
             <button
               onClick={() => setActiveTab('dim')}
-              className={`px-4 py-2 rounded font-semibold cursor-pointer text-xs min-w-40
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
               ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
               Dimensionnement
@@ -193,7 +193,6 @@ export default function PoutrePage() {
             <ResultatsPreDimPoutre results={preDimResults} />
           </div>
         )}
-
 
       </div>
     </main>

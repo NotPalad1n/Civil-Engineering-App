@@ -17,7 +17,7 @@ interface ResultatsDalleProps {
 
 export default function ResultatsDalle({ results }: ResultatsDalleProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3">
+    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
           <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>

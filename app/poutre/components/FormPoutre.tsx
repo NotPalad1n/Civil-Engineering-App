@@ -126,7 +126,7 @@ export default function FormPoutre({ formData, onChange, onSubmit, errorMessage 
 
       <button
         type="submit"
-        className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition"
+        className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition cursor-pointer"
       >
         Calculer
       </button>
