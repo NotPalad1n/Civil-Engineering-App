@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex';
+
 interface Results {
   h?: number;
 }
@@ -8,13 +10,14 @@ interface ResultatsDalleProps {
 
 export default function ResultatsPreDimDalle({ results }: ResultatsDalleProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
+    <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>Dimensions de la dalle :</strong></p>
+          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
-          <p><strong>h :</strong> {results.h} cm</p>
+          <InlineMath math={`\\textbf{Dimensions de la dalle :}`}/>
+
+          <InlineMath math={`h = ${results.h}~\\text{cm}`} />
             
         </>
       ) : (

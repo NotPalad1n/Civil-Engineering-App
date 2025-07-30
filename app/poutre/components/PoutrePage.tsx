@@ -190,7 +190,7 @@ export default function PoutrePage() {
         )}
         {activeTab === 'predim' && (
           <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPreDimPoutre results={preDimResults} />
+            <ResultatsPreDimPoutre results={preDimResults} setActiveTab={setActiveTab} setFormData={setFormData}/>
           </div>
         )}
 

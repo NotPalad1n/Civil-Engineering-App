@@ -12,8 +12,7 @@ export interface BaseResults {
   Ath: number;
   As: number;
   Amin: number;
-  Br: number;
-  alpha: number;
+  Amax: number;
   lambda: number;
 }
 
@@ -40,18 +39,18 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   let Ath = (Nu / (1000 * alpha) - (Br * fc28) / (0.9 * 1.5)) * (1.15 / fe); // m² théorique armature
   Ath = Ath * 10000; // cm²
 
-  const A1 = 0.2 * a * b;
+  const A1 = 0.2/100 * a * b * 10000;
   const A2 = 4 * (2 * (a + b));
   const Amin = Math.max(A1, A2);
+  const Amax = 5/100 * a * b * 10000;
 
   const As = Math.max(Ath, Amin); // cm² armature requise
 
   return {
     lambda: parseFloat(lambda.toFixed(2)),
-    alpha: parseFloat(alpha.toFixed(2)),
-    Br: parseFloat(Br.toFixed(2)),
     Ath: parseFloat(Ath.toFixed(2)),
     Amin: parseFloat(Amin.toFixed(2)),
+    Amax: parseFloat(Amax.toFixed(2)),
     As: parseFloat(As.toFixed(2)),
   };
 }

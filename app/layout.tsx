@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'katex/dist/katex.min.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import { Outfit } from "next/font/google";
+// import { Outfit } from "next/font/google";
 
-const OutfitFont = Outfit({
+// const OutfitFont = Outfit({
+//   subsets: ["latin"],
+//   variable: "--font-outfit",
+// });
+
+import { Rubik } from "next/font/google";
+
+const RubikFont = Rubik({
   subsets: ["latin"],
   variable: "--font-outfit",
 });
@@ -22,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${OutfitFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll`}>
+      <body className={`${RubikFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll`}>
         <Navbar />
         {children}
         <Footer />

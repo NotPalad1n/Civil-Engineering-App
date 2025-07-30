@@ -31,14 +31,17 @@ export default function Navbar() {
             <button className="hover:text-blue-600 focus:outline-none py-2">
               Outils ▾
             </button>
-            <div className="absolute right-0 top-full hidden flex-col bg-white p-4 shadow-lg w-60 z-20 rounded-md group-hover:flex ">
+            <div className="absolute right-0 top-full hidden  bg-white p-4 shadow-lg w-70 z-20 rounded-md group-hover:flex ">
 
-              <p className='px-4 py-2 text-sm font-bold cursor-default'>BAEL 91 mod 99</p>
+              <div className='flex flex-col '>
+                <p className='px-4 py-2 text-sm font-bold cursor-default'>BAEL 91 mod 99</p>
 
-              <Link href="/dalle" className="block px-4 py-2 hover:text-blue-600">Dalle en béton armé</Link>
-              <Link href="/poutre" className="block px-4 py-2 hover:text-blue-600">Poutre en béton armé</Link>
-              <Link href="/poteau" className="block px-4 py-2 hover:text-blue-600">Poteau en béton armé</Link>
-              <Link href="/semelle" className="block px-4 py-2 hover:text-blue-600">Semelle isolée</Link>
+                <Link href="/dalle" className="block px-4 py-2 hover:text-blue-600">Dalle en béton armé</Link>
+                <Link href="/poutre" className="block px-4 py-2 hover:text-blue-600">Poutre en béton armé</Link>
+                <Link href="/poteau" className="block px-4 py-2 hover:text-blue-600">Poteau en béton armé</Link>
+                <Link href="/semelle" className="block px-4 py-2 hover:text-blue-600">Semelle isolée</Link>
+              </div>
+
             </div>
           </div>
         </div>

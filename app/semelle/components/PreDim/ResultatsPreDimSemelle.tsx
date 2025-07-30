@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex';
+
 interface Results {
   A?: number;
   B?: number;
@@ -11,16 +13,17 @@ interface ResultatsSemelleProps {
 
 export default function ResultatsPreDimSemelle({ results }: ResultatsSemelleProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
+    <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>Dimensions de la semelle :</strong></p>
+          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
-          <p><strong>A :</strong> {results.A} m</p>
-          <p><strong>B :</strong> {results.B} m</p>
-          <p><strong>D :</strong> {results.D} m</p>
-          <p><strong>H :</strong> {results.H} m</p>
+          <InlineMath math={`\\textbf{Dimensions de la semelle :}`}/>
+
+          <InlineMath math={`A = ${results.A}~\\text{cm}^2`} />
+          <InlineMath math={`B = ${results.B}~\\text{cm}^2`} />
+          <InlineMath math={`D = ${results.D}~\\text{cm}^2`} />
+          <InlineMath math={`H = ${results.H}~\\text{cm}^2`} />
             
         </>
       ) : (

@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex';
+
 interface Results {
   Ast?: number;
   Asc?: number;
@@ -6,7 +8,8 @@ interface Results {
   Stmax?: number;
   St?: number;
   phiT?: number;
-  message?: string;
+  cour1?: string;
+  autres?: string;
   suggestion?: string;
 }
 
@@ -16,28 +19,34 @@ interface ResultatsPoutreProps {
 
 export default function ResultatsPoutre({ results }: ResultatsPoutreProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
+    <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full w-full lg:max-h-[556px] overflow-y-scroll overflow-x-hidden">
       {results ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>ELU :</strong></p>
+          {/* <h2 className="text-xl font-bold mb-4 text-center">Résultats du calcul</h2> */}
 
-          <p><strong>A<sub>st</sub> ultime :</strong> {results.Ast} cm²</p>
-          <p><strong>A<sub>sc</sub> ultime :</strong> {results.Asc} cm²</p>
+          <InlineMath math={`\\textbf{Résultats à l’ ELU :}`}/>
 
-          <p><strong>ELS :</strong></p>
+          <InlineMath math={`A_{st} = ${results.Ast}~\\text{cm}^2`} />
+          <InlineMath math={`A_{sc} = ${results.Asc}~\\text{cm}^2`} />
 
-          <p><strong>A<sub>st</sub> service :</strong> {results.Asts} cm²</p>
-          <p><strong>A<sub>sc</sub> service :</strong> {results.Ascs} cm²</p>
+          <InlineMath math={`\\textbf{Résultats à l’ELS :}`} />
 
-          <p><strong>Effort tranchant :</strong></p>
+          <InlineMath math={`A_{st} = ${results.Asts}~\\text{cm}^2`} />
+          <InlineMath math={`A_{sc} = ${results.Ascs}~\\text{cm}^2`} />
 
-          <p><strong>S<sub>tmax</sub> :</strong> {results.Stmax} cm</p>
-          <p><strong>S<sub>t</sub> :</strong> {results.St} cm</p>
-          <p><strong>Φ<sub>t</sub> :</strong> {results.phiT} mm</p>
-          <p className="whitespace-pre-line">{results.message}</p>
-            
-          <p><strong>Suggestion d’armature :</strong> {results.suggestion}</p>
+          <InlineMath math={`\\textbf{Résultats de l’Effort tranchant :}`} />
+
+          <InlineMath math={`S_t = ${results.St}~\\text{cm}`} />
+          <InlineMath math={`S_{t\\max} = ${results.Stmax}~\\text{cm}`} />
+
+          <InlineMath math={`\\text{Le diamètre des armatures est :}`} />
+          <InlineMath math={`\\varphi_t = ${results.phiT}~\\text{mm}`} />
+
+          <InlineMath math={`\\text{${results.cour1}}`}/>
+          <InlineMath math={`\\text{${results.autres}}`}/>
+
+          <InlineMath math={`\\textbf{Suggestion d’armature :}`} />
+          <InlineMath math={`\\text{${results.suggestion}}`}/>
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

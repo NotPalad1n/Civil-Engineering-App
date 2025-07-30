@@ -189,7 +189,7 @@ export default function PoteauPage() {
         )}
         {activeTab === 'predim' && (
           <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPreDimPoteau results={preDimResults} />
+            <ResultatsPreDimPoteau results={preDimResults}/>
           </div>
         )}
 

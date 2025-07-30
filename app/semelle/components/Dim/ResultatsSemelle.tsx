@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex';
+
 interface Results {
   Asx?: number;
   Asy?: number;
@@ -11,17 +13,25 @@ interface ResultatsSemelleProps {
 
 export default function ResultatsSemelle({ results }: ResultatsSemelleProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
+    <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
+          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
+          <InlineMath math={`\\textbf{Ferraillage de la semelle :}`}/>
 
-          <p><strong>A<sub>s//A</sub> ultime :</strong> {results.Asx} cm²</p>
-          <p><strong>A<sub>s//B</sub> ultime :</strong> {results.Asy} cm²</p>
+          <InlineMath math={`\\text{Ferraillage // A}`}/>
+          <InlineMath math={`A_{s//A} = ${results.Asx}~\\text{cm}^2`} />
 
-          <p className="whitespace-pre-line">{results.message}</p>
-            
-          <p><strong>Suggestion d’armature :</strong> {results.suggestion}</p>
+          <InlineMath math={`\\text{Ferraillage // B}`}/>
+          <InlineMath math={`A_{s//B} = ${results.Asy}~\\text{cm}^2`} />
+
+          <InlineMath math={`\\textbf{Verification de la contrainte :}`}/>
+
+          <InlineMath math={`\\text{${results.message}}`} />
+
+          <InlineMath math={`\\textbf{Suggestion d’armature :}`}/>
+
+          <InlineMath math={`\\text{${results.suggestion}}`} />
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

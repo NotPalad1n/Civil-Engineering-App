@@ -17,7 +17,8 @@ export interface BaseResults {
   Stmax: number;
   St: number;
   phiT: number;
-  message: string;
+  cour1: string;
+  autres: string;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
@@ -45,7 +46,8 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   let Asts = 0;
   let Ascs = 0;
 
-  let message = "";
+  let cour1 = "";
+  let autres = "";
 
   if (fe === 500) {
     // epsilonL = 2.174/1000;
@@ -143,11 +145,13 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   St = Math.floor(parseFloat((St/2).toFixed(2)) * 2) / 2;
 
   if (St > Stmax) {
-    message = "Le diametre des armatures est : " + phiT + " mm\nEt le 1er cour a " + Stmax + " cm, et les autres à " + Stmax + " cm"
+    cour1 = "Le 1er cour à " + Stmax + " cm";
+    autres = "les autres à " + Stmax + " cm.";
   }
   else
   {
-    message = "Le diametre des armatures est : " + phiT + " mm\nEt le 1er cour a " + St + " cm, et les autres suivant la serie de Caquot ";
+    cour1 = "Le 1er cour est à " + St + " cm du nu.";
+    autres = "Les autres sont suivant la serie de Caquot.";
   }
 
   return {
@@ -158,6 +162,7 @@ export function calculerBaseResultats(data: FormData): BaseResults {
     Stmax: parseFloat(Stmax.toFixed(2)),
     St: parseFloat(St.toFixed(2)),  
     phiT: parseFloat(phiT.toFixed(2)),
-    message: message,
+    cour1: cour1,
+    autres: autres,
   };
 }

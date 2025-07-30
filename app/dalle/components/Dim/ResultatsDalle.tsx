@@ -1,3 +1,5 @@
+import { InlineMath } from 'react-katex';
+
 interface Results {
   Astx?: number;
   Ascx?: number;
@@ -17,35 +19,38 @@ interface ResultatsDalleProps {
 
 export default function ResultatsDalle({ results }: ResultatsDalleProps) {
   return (
-    <div className="flex-1 mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
+    <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full w-full lg:max-h-[556px] overflow-y-scroll overflow-x-hidden">
       {results ? (
         <>
-          <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2>
-          <p><strong>ELU // x :</strong></p>
+          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
-          <p><strong>A<sub>stx</sub> :</strong> {results.Astx} cm² par mètre</p>
-          <p><strong>A<sub>scx</sub> :</strong> {results.Ascx} cm² par mètre</p>
+          <InlineMath math={`\\textbf{Résultats à l’ ELU // x :}`}/>
 
-          <p><strong>ELU // y :</strong></p>
+          <InlineMath math={`A_{st~x} = ${results.Astx}~\\text{cm}^2`} />
+          <InlineMath math={`A_{sc~x} = ${results.Ascx}~\\text{cm}^2`} />
 
-          <p><strong>A<sub>sty</sub> :</strong> {results.Asty} cm² par mètre</p>
-          <p><strong>A<sub>scy</sub> :</strong> {results.Ascy} cm² par mètre</p>
+          <InlineMath math={`\\textbf{Résultats à l’ ELU // y :}`}/>
 
-          <p><strong>Armatures d’âme :</strong></p>
+          <InlineMath math={`A_{st~y} = ${results.Asty}~\\text{cm}^2`} />
+          <InlineMath math={`A_{sc~y} = ${results.Ascy}~\\text{cm}^2`} />
 
-          <p className="whitespace-pre-line">{results.message}</p>
+          <InlineMath math={`\\textbf{Armatures d’âme :}`}/>
 
-          <p><strong>Sections minimales :</strong></p>
+          <InlineMath math={`\\text{${results.message}}`} />
 
-          <p><strong>A<sub>xmin</sub> :</strong> {results.Axmin} cm² par mètre</p>
-          <p><strong>A<sub>ymin</sub> :</strong> {results.Aymin} cm² par mètre</p>
+          <InlineMath math={`\\textbf{Sections minimales :}`}/>
 
-          <p><strong>Espacement maximal :</strong></p>
+          <InlineMath math={`A_{x~min} = ${results.Axmin}~\\text{cm}^2`} />
+          <InlineMath math={`A_{y~min} = ${results.Aymin}~\\text{cm}^2`} />
 
-          <p><strong>S<sub>tx</sub> :</strong> {results.Stx} m</p>
-          <p><strong>S<sub>ty</sub> :</strong> {results.Sty} m</p>
-            
-          <p><strong>Suggestion d’armature :</strong> {results.suggestion}</p>
+          <InlineMath math={`\\textbf{Espacement maximal :}`}/>
+
+          <InlineMath math={`S_{t~x} = ${results.Stx}~\\text{cm}^2`} />
+          <InlineMath math={`S_{t~y} = ${results.Sty}~\\text{cm}^2`} />
+          
+          <InlineMath math={`\\textbf{Suggestion d’armature :}`}/>
+
+          <InlineMath math={`\\text{${results.suggestion}}`} />
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>
