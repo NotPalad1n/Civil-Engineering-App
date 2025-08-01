@@ -198,7 +198,7 @@ export default function PoutrePage() {
 
             {preDimResults && (
 
-              <div className='mt-4 flex justify-end'>
+              <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
                 <button 
                   className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
                   onClick={() => {
