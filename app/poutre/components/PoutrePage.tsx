@@ -189,8 +189,34 @@ export default function PoutrePage() {
           </div>
         )}
         {activeTab === 'predim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPreDimPoutre results={preDimResults} setActiveTab={setActiveTab} setFormData={setFormData}/>
+
+          <div className='lg:w-1/2 flex flex-col'>
+
+            <div className='w-full min-h-full'>
+              <ResultatsPreDimPoutre results={preDimResults}/>
+            </div>
+
+            {preDimResults && (
+
+              <div className='mt-4 flex justify-end'>
+                <button 
+                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
+                  onClick={() => {
+                  setFormData?.((prev) => ({
+                    ...prev,
+                    largeur: preDimResults?.b?.toString() ?? '',
+                    hauteur: preDimResults?.h?.toString() ?? '',
+                  }));
+                  setActiveTab?.('dim');
+                }
+              }
+                >
+                  Passer au dimensionnement →
+                </button>
+              </div>
+              
+            )}
+
           </div>
         )}
 

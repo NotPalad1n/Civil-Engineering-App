@@ -24,7 +24,7 @@ export interface BaseResults {
 export function calculerBaseResultats(data: FormData): BaseResults {
   const largeur = data.largeur; // m
   const longueur = data.longueur; // m
-  const h = data.epaisseur; // m
+  const h = data.epaisseur / 100; // m
   const fissuration = data.fissuration; // coefficient de fissuration
   const Pu = data.Pu; // kN/m²
   const Pser = data.Pser; // kN/m²

@@ -39,7 +39,7 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   
   if ((Nser + Pp) / (A * B) > contrainte) 
   {
-    message = "La contrainte admissible du sol est dépassée. Veuillez redimentionner la section de la semelle.";
+    message = "La contrainte admissible du sol est dépassée.";
   }
   else if ((Nser + Pp) / (A * B) <= contrainte) 
   {

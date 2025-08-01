@@ -200,8 +200,39 @@ export default function SemellePage() {
           </div>
         )}
         {activeTab === 'predim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPreDimSemelle results={preDimResults} />
+
+          <div className='lg:w-1/2 flex flex-col'>
+
+            <div className='w-full min-h-full'>
+              <ResultatsPreDimSemelle results={preDimResults}/>
+            </div>
+
+            {preDimResults && (
+
+              <div className='mt-4 flex justify-end'>
+                <button 
+                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
+                  onClick={() => {
+                  setFormData?.((prev) => ({
+                    ...prev,
+                    largeur: preDimResults?.A?.toString() ?? '',
+                    longueur: preDimResults?.B?.toString() ?? '',
+                    largeurPoteau: preDimFormData?.largeurPoteau?.toString() ?? '',
+                    longueurPoteau: preDimFormData?.longueurPoteau?.toString() ?? '',
+                    hauteur: preDimResults?.D?.toString() ?? '',
+                    contrainte: preDimFormData?.contrainte?.toString() ?? '',
+                    Nser: preDimFormData?.Nser?.toString() ?? '',
+                  }));
+                  setActiveTab?.('dim');
+                }
+              }
+                >
+                  Passer au dimensionnement →
+                </button>
+              </div>
+              
+            )}
+
           </div>
         )}
 

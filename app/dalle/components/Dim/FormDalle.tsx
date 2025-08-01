@@ -41,7 +41,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
       </div>
 
       <div>
-        <label className="block mb-1">Epaisseur h (m)</label>
+        <label className="block mb-1">Epaisseur h (cm)</label>
         <input
           type="number"
           inputMode="decimal"

@@ -190,9 +190,37 @@ export default function DallePage() {
           </div>
         )}
         {activeTab === 'predim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPreDimDalle results={preDimResults} />
+
+          <div className='lg:w-1/2 flex flex-col'>
+
+            <div className='w-full min-h-full'>
+              <ResultatsPreDimDalle results={preDimResults}/>
+            </div>
+
+            {preDimResults && (
+
+              <div className='mt-4 flex justify-end'>
+                <button 
+                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
+                  onClick={() => {
+                  setFormData?.((prev) => ({
+                    ...prev,
+                    largeur: preDimFormData?.largeur?.toString() ?? '',
+                    longueur: preDimFormData?.longueur?.toString() ?? '',
+                    epaisseur: preDimResults?.h?.toString() ?? '',
+                  }));
+                  setActiveTab?.('dim');
+                }
+              }
+                >
+                  Passer au dimensionnement →
+                </button>
+              </div>
+              
+            )}
+
           </div>
+
         )}
 
       </div>
