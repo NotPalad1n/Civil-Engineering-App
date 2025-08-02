@@ -34,7 +34,7 @@ export default function Navbar() {
             <div className="absolute right-0 top-full hidden  bg-white p-4 shadow-lg w-70 z-20 rounded-md group-hover:flex ">
 
               <div className='flex flex-col '>
-                <p className='px-4 py-2 text-sm font-bold cursor-default'>BAEL 91 mod 99</p>
+                <p className='px-4 py-2 text-sm font-semibold cursor-default'>BAEL 91 mod 99</p>
 
                 <Link href="/dalle" className="block px-4 py-2 hover:text-blue-600">Dalle en béton armé</Link>
                 <Link href="/poutre" className="block px-4 py-2 hover:text-blue-600">Poutre en béton armé</Link>
@@ -50,8 +50,8 @@ export default function Navbar() {
       {/* Mobile menu (shown when menuOpen is true) */}
       {menuOpen && (
         <div className="md:hidden mt-4 space-y-4 text-center text-lg">
-          <Link href="/" className="block hover:text-blue-500">Accueil</Link>
-          <Link href="/about" className="block hover:text-blue-500">À propos</Link>
+          <Link href="/" className="block hover:text-blue-600">Accueil</Link>
+          <Link href="/about" className="block hover:text-blue-600">À propos</Link>
           
           <div>
             <p className="font-normal">Outils ▾</p>

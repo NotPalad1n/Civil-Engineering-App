@@ -227,7 +227,7 @@ export default function SemellePage() {
                 }
               }
                 >
-                  Passer au dimensionnement →
+                  Exporter vers dimensionnement →
                 </button>
               </div>
               

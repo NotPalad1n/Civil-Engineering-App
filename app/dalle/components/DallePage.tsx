@@ -213,7 +213,7 @@ export default function DallePage() {
                 }
               }
                 >
-                  Passer au dimensionnement →
+                  Exporter vers dimensionnement →
                 </button>
               </div>
               

@@ -211,7 +211,7 @@ export default function PoutrePage() {
                 }
               }
                 >
-                  Passer au dimensionnement →
+                  Exporter vers dimensionnement →
                 </button>
               </div>
               
