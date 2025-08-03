@@ -31,15 +31,25 @@ export default function Navbar() {
             <button className="hover:text-blue-600 focus:outline-none py-2">
               Outils ▾
             </button>
-            <div className="absolute right-0 top-full hidden  bg-white p-4 shadow-lg w-70 z-20 rounded-md group-hover:flex ">
+            <div className="absolute right-0 top-full hidden bg-white shadow-lg p-8 min-w-max z-20 rounded-md group-hover:flex justify-between">
 
-              <div className='flex flex-col '>
-                <p className='px-4 py-2 text-sm font-semibold cursor-default'>BAEL 91 mod 99</p>
+              <div className='flex flex-col gap-2'>
+                <p className='mb-2 font-semibold cursor-default'>BAEL 91 mod 99</p>
 
-                <Link href="/dalle" className="block px-4 py-2 hover:text-blue-600">Dalle en béton armé</Link>
-                <Link href="/poutre" className="block px-4 py-2 hover:text-blue-600">Poutre en béton armé</Link>
-                <Link href="/poteau" className="block px-4 py-2 hover:text-blue-600">Poteau en béton armé</Link>
-                <Link href="/semelle" className="block px-4 py-2 hover:text-blue-600">Semelle isolée</Link>
+                <Link href="/dalle" className="block hover:text-blue-600">Dalle en béton armé</Link>
+                <Link href="/poutre" className="block hover:text-blue-600">Poutre en béton armé</Link>
+                <Link href="/poteau" className="block hover:text-blue-600">Poteau en béton armé</Link>
+                <Link href="/semelle" className="block hover:text-blue-600">Semelle isolée</Link>
+                <Link href="/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
+              </div>
+
+              <div className="block w-px bg-gray-300 mx-8"></div>
+
+              <div className='flex flex-col gap-2'>
+                <p className=' mb-2 font-semibold cursor-default'>Géotechnique</p>
+
+                <Link href="" className="block hover:text-blue-600">Application</Link>
+
               </div>
 
             </div>
@@ -63,6 +73,7 @@ export default function Navbar() {
               <Link href="/poutre" className="block hover:text-blue-600">Poutre en béton</Link>
               <Link href="/poteau" className="block hover:text-blue-600">Poteau en béton</Link>
               <Link href="/semelle" className="block hover:text-blue-600">Semelle isolée</Link>
+              <Link href="/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
             </div>
           </div>
         </div>

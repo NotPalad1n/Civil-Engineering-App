@@ -34,6 +34,9 @@ export default function Footer() {
               <li>
                 <Link href="/semelle" className="hover:text-blue-600 transition">Semelle isolée</Link>
               </li>
+              <li>
+                <Link href="/semelle-filante" className="hover:text-blue-600 transition">Semelle filante</Link>
+              </li>
             </ul>
           </div>
 

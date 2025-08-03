@@ -6,7 +6,7 @@ export default function Hero() {
       <h1 className="text-4xl sm:text-5xl font-bold mb-8">
         Des outils de génie civil simples et efficaces 
       </h1>
-      <p className="text-lg sm:text-xl text-black mb-8">
+      <p className="text-lg sm:text-xl mb-8">
         Calculez les sections de ferraillage pour les poteaux, poutres, dalles et semelles.
       </p>
       <Link href="#tools">

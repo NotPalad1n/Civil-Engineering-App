@@ -1,10 +1,10 @@
 export default function WhatWeProvide() {
   return (
     <section className="bg-gray-50 py-16 px-6 ">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-12">
+      <div className="max-w-7xl mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-12">
           Ce que nous proposons
-        </h2>
+        </h1>
 
         <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200">
           {/* Item 1 */}

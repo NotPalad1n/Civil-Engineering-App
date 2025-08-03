@@ -18,8 +18,13 @@ const tools = [
   },
   {
     title: 'Semelle isolée',
-    description: 'Dimensionne une semelle en béton armé sous un poteau.',
+    description: 'Calcule la section d’armature d’une semelle isolée en béton armé.',
     href: '/semelle',
+  },
+  {
+    title: 'Semelle filante',
+    description: 'Calcule la section d’armature d’une semelle filante en béton armé.',
+    href: '/semelle-filante',
   },
 
   // Add more tools here as needed
@@ -27,7 +32,7 @@ const tools = [
 
 export default function Tools() {
   return (
-    <div className="bg-white py-16 px-6" id="tools">
+    <div className="py-16 px-6" id="tools">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10">Outils</h2>
         <p className="text-lg font-medium text-center mb-10 cursor-default">BAEL 91 mod 99</p>
@@ -41,6 +46,7 @@ export default function Tools() {
             />
           ))}
         </div>
+        <p className="text-lg font-medium text-center mb-10 cursor-default">Géotechnique</p>
       </div>
     </div>
   );
