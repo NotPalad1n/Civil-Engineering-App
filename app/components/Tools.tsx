@@ -1,6 +1,6 @@
 import ToolCard from './ToolCard';
 
-const tools = [
+const BAELtools = [
   {
     title: 'Dalle en béton armé',
     description: 'Calcule les sections de ferraillage pour une dalle pleine en béton armé.',
@@ -30,6 +30,17 @@ const tools = [
   // Add more tools here as needed
 ];
 
+const Geotools = [
+  {
+    title: 'Corrélations',
+    description: 'Description.',
+    href: '/correlations',
+  },
+
+
+  // Add more tools here as needed
+];
+
 export default function Tools() {
   return (
     <div className="py-16 px-6" id="tools">
@@ -37,7 +48,7 @@ export default function Tools() {
         <h2 className="text-4xl font-bold text-center mb-10">Outils</h2>
         <p className="text-lg font-medium text-center mb-10 cursor-default">BAEL 91 mod 99</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {tools.map((tool) => (
+          {BAELtools.map((tool) => (
             <ToolCard
               key={tool.title}
               title={tool.title}
@@ -46,7 +57,17 @@ export default function Tools() {
             />
           ))}
         </div>
-        <p className="text-lg font-medium text-center mb-10 cursor-default">Géotechnique</p>
+        <p className="text-lg font-medium text-center mb-10 mt-10 cursor-default">Géotechnique</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {Geotools.map((tool) => (
+            <ToolCard
+              key={tool.title}
+              title={tool.title}
+              description={tool.description}
+              href={tool.href}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
