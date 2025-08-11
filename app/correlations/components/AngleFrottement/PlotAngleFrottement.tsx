@@ -23,7 +23,7 @@ interface PlotAngleFrottementProps {
 }
 
 export default function PlotAngleFrottement({ correlation, userPl, userIp }: PlotAngleFrottementProps) {
-  let dataPoints: { x: number; y: number }[] = [];
+  const dataPoints: { x: number; y: number }[] = [];
   let userPoint: { x: number; y: number } | null = null;
   let xLabel = '';
   let xMin = 0;
@@ -66,7 +66,7 @@ export default function PlotAngleFrottement({ correlation, userPl, userIp }: Plo
     yMax = 55;
 
     for (let ip = xMin; ip <= xMax; ip++) {
-      let phi = Math.atan(0.21 + 8 / (ip + 6)) * (180 / Math.PI);
+      const phi = Math.atan(0.21 + 8 / (ip + 6)) * (180 / Math.PI);
       dataPoints.push({ x: ip, y: phi });
     }
 

@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
 
         {/* Liens horizontaux */}
-        <div className="flex gap-10">
+        <div className="flex flex-col gap-10 md:flex-row">
 
           <Link href="/" className="hover:text-blue-600 transition">Accueil</Link>
           
@@ -39,7 +39,17 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
+          <div>
+            <h3 className="text-md font-semibold  mb-3">Géotechnique</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/correlations" className="hover:text-blue-600 transition">Corrélations</Link>
+              </li>
+              <li>
+                <Link href="/fondation" className="hover:text-blue-600 transition">Fondation</Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>

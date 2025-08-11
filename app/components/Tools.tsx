@@ -36,6 +36,11 @@ const Geotools = [
     description: 'Description.',
     href: '/correlations',
   },
+  {
+    title: 'Fondation',
+    description: 'Description.',
+    href: '/fondation',
+  },
 
 
   // Add more tools here as needed

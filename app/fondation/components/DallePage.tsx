@@ -8,7 +8,9 @@ export default function DallePage() {
   { id: '0', hauteur: '' , color: '#000000', Pl: '', Em: '' }
   ]);
 
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const errorMessage = 'error';
 
   const handleSubmit = () => {
     // Do something with the elements, like validation or submission

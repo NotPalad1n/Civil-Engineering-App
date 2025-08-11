@@ -48,7 +48,8 @@ export default function Navbar() {
               <div className='flex flex-col gap-2'>
                 <p className=' mb-2 font-semibold cursor-default'>Géotechnique</p>
 
-                <Link href="" className="block hover:text-blue-600">Application</Link>
+                <Link href="correlations" className="block hover:text-blue-600">Corrélations</Link>
+                <Link href="fondation" className="block hover:text-blue-600">Fondation</Link>
 
               </div>
 
