@@ -33,6 +33,15 @@ export default function ResultatsAngleFrottement({ results, formData }: Resultat
 
       <InlineMath math={`\\textbf{Courbe de corrélation :}`} />
 
+      <InlineMath math={`\\text{Equation utilisée :}`} />
+
+      {correlation === 'Pl' && (
+        <InlineMath math={`\\phi = 24 + 4 \\times \\frac{\\log_{10}\\left(\\frac{10 \\times Pl}{2.5}\\right)}{\\log_{10}(2)}`} />
+      )}
+      {correlation === 'Ip' && (
+        <InlineMath math={`\\phi = \\arctan\\left(0.21 + \\frac{8}{Ip + 6}\\right) \\times \\frac{180}{\\pi}`} />
+      )}
+
       <PlotAngleFrottement
         correlation={correlation}
         userPl={correlation === 'Pl' ? formData.Pl : undefined}
