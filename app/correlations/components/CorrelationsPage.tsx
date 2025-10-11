@@ -5,15 +5,13 @@ import FormAngleFrottement from './AngleFrottement/FormAngleFrottement';
 import ResultatsAngleFrottement from './AngleFrottement/ResultatsAngleFrottement';
 import { calculerAngleFrottementResultats, AngleFrottementFormData, AngleFrottementResults } from './AngleFrottement/calculsAngleFrottement';
 
-import FormDalle from './Dim/FormDalle';
-import ResultatsDalle from './Dim/ResultatsDalle';
-import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
-
-import { suggererArmatures } from './armatures';
+import FormCohesionND from './CohesionND/FormCohesionND';
+import ResultatsCohesionND from './CohesionND/ResultatsCohesionND';
+import { calculerCohesionNDResultats, CohesionNDFormData, CohesionNDResults } from './CohesionND/calculsCohesionND';
 
 export default function CorrelationsPage() {
   
-  const [activeTab, setActiveTab] = useState<'AngleFrottement' | 'dim'>('AngleFrottement');
+  const [activeTab, setActiveTab] = useState<'AngleFrottement' | 'CohesionND'>('AngleFrottement');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   
   //
@@ -76,69 +74,72 @@ export default function CorrelationsPage() {
   };
 
   //
-  // Dimentionnement
+  // Cohesion non drainée
   //
 
-  const [formData, setFormData] = useState<Record<string, string>>({
-    longueur: '',
-    largeur: '',
-    epaisseur: '',
-    fissuration: 'peu nuisible',
-    Pu: '',
-    Pser: '',
-    fc28: '',
-    fe: '500',
+  const [cohesionNDFormData, setCohesionNDFormData] = useState<Record<string, string>>({
+    correlation: 'Pl1', // Default value
+    Pl1: '',
+    Pl2: '',
+    IC: '',
   });
 
-  const [results, setResults] = useState<(BaseResults & { suggestion: string }) | null>(null);
+  const [cohesionNDResults, setCohesionNDResults] = useState<(CohesionNDResults) | null>(null);
 
-  const handleChange = (
+  const handleCohesionNDChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setCohesionNDFormData({ ...cohesionNDFormData, [name]: value });
     setErrorMessage(null);
-    setResults(null);
+    setCohesionNDResults(null);
   };
 
-  const validate = () => {
-    const requiredFields = [
-      'longueur',
-      'largeur',
-      'epaisseur',
-      'Pu',
-      'fc28',
-      'fe',
-    ];
-    for (const key of requiredFields) {
-      const value = formData[key];
-      if (!value || value.trim() === '' || isNaN(Number(value))) {
-        setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
+  const validateCohesionND = () => {
+    const { correlation, Pl1, Pl2, IC } = cohesionNDFormData;
+
+    if (correlation === 'Pl1') {
+      if (!Pl1 || Pl1.trim() === '' || isNaN(Number(Pl1))) {
+        setErrorMessage('Veuillez entrer une valeur numérique valide pour Pl.');
         return false;
       }
+    } 
+    else if (correlation === 'Pl2') {
+      if (!Pl2 || Pl2.trim() === '' || isNaN(Number(Pl2))) {
+        setErrorMessage('Veuillez entrer une valeur numérique valide pour Pl.');
+        return false;
+      }
+    } 
+    else if (correlation === 'IC') {
+      if (!IC || IC.trim() === '' || isNaN(Number(IC))) {
+        setErrorMessage('Veuillez entrer une valeur numérique valide pour IC.');
+        return false;
+      }
+    } 
+    else {
+      setErrorMessage('Veuillez sélectionner une corrélation valide.');
+      return false;
     }
+
+    // If everything is valid
+    setErrorMessage(null);
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleCohesionNDSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validateCohesionND()) return;
 
-    const data: FormData = {
-      longueur: Number(formData.longueur),
-      largeur: Number(formData.largeur),
-      epaisseur: Number(formData.epaisseur),
-      fissuration: formData.fissuration,
-      Pu: Number(formData.Pu),
-      Pser: Number(formData.Pser),
-      fc28: Number(formData.fc28),
-      fe: Number(formData.fe),
+    const data: CohesionNDFormData = {
+      correlation: cohesionNDFormData.correlation,
+      Pl1: Number(cohesionNDFormData.Pl1),
+      Pl2: Number(cohesionNDFormData.Pl2),
+      IC: Number(cohesionNDFormData.IC),
     };
 
-    const base = calculerBaseResultats(data);
-    const suggestion = suggererArmatures(0, data.largeur, data.longueur); // base.As, data.largeur, data.longueur
+    const base = calculerCohesionNDResultats(data);
 
-    setResults({ ...base, suggestion });
+    setCohesionNDResults(base);
   };
 
   //
@@ -166,23 +167,15 @@ export default function CorrelationsPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab('dim')}
+              onClick={() => setActiveTab('CohesionND')}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
-              ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              ${activeTab === 'CohesionND' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
-              Dimensionnement
+              Cohésion non drainée
             </button>
 
           </div>
 
-          {activeTab === 'dim' && (
-            <FormDalle
-              formData={formData}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-              errorMessage={errorMessage}
-            />
-          )}
           {activeTab === 'AngleFrottement' && (
             <FormAngleFrottement
               formData={angleFrottementFormData}
@@ -191,19 +184,27 @@ export default function CorrelationsPage() {
               errorMessage={errorMessage}
             />
           )}
+          {activeTab === 'CohesionND' && (
+            <FormCohesionND
+              formData={cohesionNDFormData}
+              onChange={handleCohesionNDChange}
+              onSubmit={handleCohesionNDSubmit}
+              errorMessage={errorMessage}
+            />
+          )}
 
         </div>
 
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
-        {activeTab === 'dim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsDalle results={results} />
-          </div>
-        )}
         {activeTab === 'AngleFrottement' && (
           <div className='w-full lg:w-1/2 min-h-full'>
             <ResultatsAngleFrottement results={angleFrottementResults} formData={angleFrottementFormData}/>
+          </div>
+        )}
+        {activeTab === 'CohesionND' && (
+          <div className='w-full lg:w-1/2 min-h-full'>
+            <ResultatsCohesionND results={cohesionNDResults} formData={cohesionNDFormData}/>
           </div>
         )}
 
