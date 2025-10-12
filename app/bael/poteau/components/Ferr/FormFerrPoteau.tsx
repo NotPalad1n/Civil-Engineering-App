@@ -26,8 +26,8 @@ export default function FormFerrPoteau({ formData, onChange, onSubmit, errorMess
           <input
           type="number"
           inputMode="decimal"
-          name="Nu"
-          value={formData.Nu}
+          name="As"
+          value={formData.As}
           onChange={onChange}
           className={inputClass}
           />

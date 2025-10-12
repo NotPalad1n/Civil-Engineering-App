@@ -141,11 +141,10 @@ export default function PoteauPage() {
   //
 
   const [ferrFormData, setFerrFormData] = useState<Record<string, string>>({
-    Nu: '',
-    largeur: '25',
+    As: '',
   });
 
-  const [ferrResults, setFerrResults] = useState<(PreDimResults) | null>(null);
+  const [ferrResults, setFerrResults] = useState<(FerrResults) | null>(null);
 
   const handleFerrChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -158,8 +157,7 @@ export default function PoteauPage() {
 
   const validateFerr = () => {
     const requiredFields = [
-      'Nu',
-      'largeur',
+      'As',
     ];
     for (const key of requiredFields) {
       const value = ferrFormData[key];
@@ -175,9 +173,8 @@ export default function PoteauPage() {
     e.preventDefault();
     if (!validateFerr()) return;
 
-    const data: PreDimFormData = {
-      Nu: Number(ferrFormData.Nu),
-      largeur: Number(ferrFormData.largeur),
+    const data: FerrFormData = {
+      As: Number(ferrFormData.As),
     };
 
     const base = calculerFerrResultats(data);
