@@ -10,6 +10,8 @@ export function calculerFerrResultats(data: FerrFormData): FerrResults {
     
     const As = data.As; // cm2
 
+    console.log(As);
+
     const verification = 'test';
 
     return {
