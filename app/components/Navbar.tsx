@@ -36,11 +36,11 @@ export default function Navbar() {
               <div className='flex flex-col gap-2'>
                 <p className='mb-2 font-semibold cursor-default'>BAEL 91 mod 99</p>
 
-                <Link href="/dalle" className="block hover:text-blue-600">Dalle en béton armé</Link>
-                <Link href="/poutre" className="block hover:text-blue-600">Poutre en béton armé</Link>
-                <Link href="/poteau" className="block hover:text-blue-600">Poteau en béton armé</Link>
-                <Link href="/semelle" className="block hover:text-blue-600">Semelle isolée</Link>
-                <Link href="/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
+                <Link href="/bael/dalle" className="block hover:text-blue-600">Dalle en béton armé</Link>
+                <Link href="/bael/poutre" className="block hover:text-blue-600">Poutre en béton armé</Link>
+                <Link href="/bael/poteau" className="block hover:text-blue-600">Poteau en béton armé</Link>
+                <Link href="/bael/semelle-isolee" className="block hover:text-blue-600">Semelle isolée</Link>
+                <Link href="/bael/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
               </div>
 
               <div className="block w-px bg-gray-300 mx-8"></div>
@@ -48,8 +48,8 @@ export default function Navbar() {
               <div className='flex flex-col gap-2'>
                 <p className=' mb-2 font-semibold cursor-default'>Géotechnique</p>
 
-                <Link href="correlations" className="block hover:text-blue-600">Corrélations</Link>
-                <Link href="fondation" className="block hover:text-blue-600">Fondation</Link>
+                <Link href="/geotechnique/correlations" className="block hover:text-blue-600">Corrélations</Link>
+                <Link href="/geotechnique/fondation" className="block hover:text-blue-600">Fondation</Link>
 
               </div>
 
@@ -70,11 +70,17 @@ export default function Navbar() {
 
               <p className='py-1 text-sm font-bold cursor-default'>BAEL 91 mod 99</p>
 
-              <Link href="/dalle" className="block hover:text-blue-600">Dalle en béton</Link>
-              <Link href="/poutre" className="block hover:text-blue-600">Poutre en béton</Link>
-              <Link href="/poteau" className="block hover:text-blue-600">Poteau en béton</Link>
-              <Link href="/semelle" className="block hover:text-blue-600">Semelle isolée</Link>
-              <Link href="/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
+              <Link href="/bael/dalle" className="block hover:text-blue-600">Dalle en béton</Link>
+              <Link href="/bael/poutre" className="block hover:text-blue-600">Poutre en béton</Link>
+              <Link href="/bael/poteau" className="block hover:text-blue-600">Poteau en béton</Link>
+              <Link href="/bael/semelle-isolee" className="block hover:text-blue-600">Semelle isolée</Link>
+              <Link href="/bael/semelle-filante" className="block hover:text-blue-600">Semelle filante</Link>
+
+              <p className='py-1 text-sm font-bold cursor-default'>Géotechnique</p>
+
+              <Link href="/geotechnique/correlations" className="block hover:text-blue-600">Corrélations</Link>
+              <Link href="/geotechnique/fondation" className="block hover:text-blue-600">Fondation</Link>
+
             </div>
           </div>
         </div>

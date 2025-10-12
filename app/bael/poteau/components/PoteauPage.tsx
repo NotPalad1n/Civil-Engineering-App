@@ -1,16 +1,25 @@
 'use client';
 import { useState } from 'react';
-import FormPoteau from './Dim/FormPoteau';
+
 import FormPreDimPoteau from './PreDim/FormPreDimPoteau';
-import ResultatsPoteau from './Dim/ResultatsPoteau';
 import ResultatsPreDimPoteau from './PreDim/ResultatsPreDimPoteau';
-import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
 import { calculerPreDimResultats, PreDimFormData, PreDimResults } from './PreDim/calculsPreDim';
+
+import FormPoteau from './Dim/FormPoteau';
+import ResultatsPoteau from './Dim/ResultatsPoteau';
+import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
+
+import FormFerrPoteau from './Ferr/FormFerrPoteau';
+import ResultatsFerrPoteau from './Ferr/ResultatsFerrPoteau';
+import { calculerFerrResultats, FerrFormData, FerrResults } from './Ferr/calculsFerr';
+
+
+
 import { suggererArmatures } from './armatures';
 
 export default function PoteauPage() {
 
-  const [activeTab, setActiveTab] = useState<'predim' | 'dim'>('predim');
+  const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   //
@@ -128,6 +137,55 @@ export default function PoteauPage() {
   };
 
   //
+  // Ferraillage
+  //
+
+  const [ferrFormData, setFerrFormData] = useState<Record<string, string>>({
+    Nu: '',
+    largeur: '25',
+  });
+
+  const [ferrResults, setFerrResults] = useState<(PreDimResults) | null>(null);
+
+  const handleFerrChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFerrFormData({ ...ferrFormData, [name]: value });
+    setErrorMessage(null);
+    setFerrResults(null);
+  };
+
+  const validateFerr = () => {
+    const requiredFields = [
+      'Nu',
+      'largeur',
+    ];
+    for (const key of requiredFields) {
+      const value = ferrFormData[key];
+      if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const handleFerrSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateFerr()) return;
+
+    const data: PreDimFormData = {
+      Nu: Number(ferrFormData.Nu),
+      largeur: Number(ferrFormData.largeur),
+    };
+
+    const base = calculerFerrResultats(data);
+
+    setFerrResults(base);
+  };
+
+  //
   // UI
   //
 
@@ -141,11 +199,11 @@ export default function PoteauPage() {
         
         <div className='w-full lg:w-1/2'>
 
-          <div className="flex space-x-4 justify-center mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center mb-10">
 
             <button
               onClick={() => setActiveTab('predim')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'predim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
               Pré-dimensionnement
@@ -153,10 +211,18 @@ export default function PoteauPage() {
 
             <button
               onClick={() => setActiveTab('dim')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
               Dimensionnement
+            </button>
+
+            <button
+              onClick={() => setActiveTab('ferr')}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
+              ${activeTab === 'ferr' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            >
+              Ferraillage
             </button>
 
           </div>
@@ -174,6 +240,14 @@ export default function PoteauPage() {
               formData={preDimFormData}
               onChange={handlePreDimChange}
               onSubmit={handlePreDimSubmit}
+              errorMessage={errorMessage}
+            />
+          )}
+          {activeTab === 'ferr' && (
+            <FormFerrPoteau
+              formData={ferrFormData}
+              onChange={handleFerrChange}
+              onSubmit={handleFerrSubmit}
               errorMessage={errorMessage}
             />
           )}
@@ -217,6 +291,11 @@ export default function PoteauPage() {
               
             )}
 
+          </div>
+        )}
+        {activeTab === 'ferr' && (
+          <div className='w-full lg:w-1/2 min-h-full'>
+            <ResultatsFerrPoteau results={ferrResults} />
           </div>
         )}
 

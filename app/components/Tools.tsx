@@ -4,27 +4,27 @@ const BAELtools = [
   {
     title: 'Dalle en béton armé',
     description: 'Calcule les sections de ferraillage pour une dalle pleine en béton armé.',
-    href: '/dalle',
+    href: 'bael/dalle',
   },
   {
     title: 'Poutre en béton armé',
     description: 'Calcule la section d’armature d’une poutre en béton armé.',
-    href: '/poutre',
+    href: '/bael/poutre',
   },
   {
     title: 'Poteau en béton armé',
     description: "Calcule la section d’armature d’un poteau en béton armé.",
-    href: '/poteau',
+    href: '/bael/poteau',
   },
   {
     title: 'Semelle isolée',
     description: 'Calcule la section d’armature d’une semelle isolée en béton armé.',
-    href: '/semelle',
+    href: '/bael/semelle-isolee',
   },
   {
     title: 'Semelle filante',
     description: 'Calcule la section d’armature d’une semelle filante en béton armé.',
-    href: '/semelle-filante',
+    href: '/bael/semelle-filante',
   },
 
   // Add more tools here as needed
@@ -34,12 +34,12 @@ const Geotools = [
   {
     title: 'Corrélations',
     description: 'Description.',
-    href: '/correlations',
+    href: '/geotechnique/correlations',
   },
   {
     title: 'Fondation',
     description: 'Description.',
-    href: '/fondation',
+    href: '/geotechnique/fondation',
   },
 
 

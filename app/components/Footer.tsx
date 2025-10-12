@@ -23,19 +23,19 @@ export default function Footer() {
             <h3 className="text-md font-semibold  mb-3">BAEL 91 mod 99</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/dalle" className="hover:text-blue-600 transition">Dalle en béton armé</Link>
+                <Link href="/bael/dalle" className="hover:text-blue-600 transition">Dalle en béton armé</Link>
               </li>
               <li>
-                <Link href="/poutre" className="hover:text-blue-600 transition">Poutre en béton armé</Link>
+                <Link href="/bael/poutre" className="hover:text-blue-600 transition">Poutre en béton armé</Link>
               </li>
               <li>
-                <Link href="/poteau" className="hover:text-blue-600 transition">Poteau en béton armé</Link>
+                <Link href="/bael/poteau" className="hover:text-blue-600 transition">Poteau en béton armé</Link>
               </li>
               <li>
-                <Link href="/semelle" className="hover:text-blue-600 transition">Semelle isolée</Link>
+                <Link href="/bael/semelle-isolee" className="hover:text-blue-600 transition">Semelle isolée</Link>
               </li>
               <li>
-                <Link href="/semelle-filante" className="hover:text-blue-600 transition">Semelle filante</Link>
+                <Link href="/bael/semelle-filante" className="hover:text-blue-600 transition">Semelle filante</Link>
               </li>
             </ul>
           </div>
@@ -43,10 +43,10 @@ export default function Footer() {
             <h3 className="text-md font-semibold  mb-3">Géotechnique</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/correlations" className="hover:text-blue-600 transition">Corrélations</Link>
+                <Link href="/geotechnique/correlations" className="hover:text-blue-600 transition">Corrélations</Link>
               </li>
               <li>
-                <Link href="/fondation" className="hover:text-blue-600 transition">Fondation</Link>
+                <Link href="/geotechnique/fondation" className="hover:text-blue-600 transition">Fondation</Link>
               </li>
             </ul>
           </div>
