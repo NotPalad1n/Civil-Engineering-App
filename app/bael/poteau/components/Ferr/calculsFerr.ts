@@ -1,5 +1,3 @@
-import { elements } from "chart.js";
-
 export interface FerrFormData {
   As: number;
   elements: ElementData[];
