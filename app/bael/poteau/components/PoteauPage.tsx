@@ -144,13 +144,21 @@ export default function PoteauPage() {
     As: '',
   });
 
+  const [elements, setElements] = useState([
+    { id: '0', nombre: '', diametre: '' },
+  ]);
+
   const [ferrResults, setFerrResults] = useState<(FerrResults) | null>(null);
 
-  const handleFerrChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleFerrChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFerrFormData({ ...ferrFormData, [name]: value });
+    setErrorMessage(null);
+    setFerrResults(null);
+  };
+
+  const handleElementsChange = (updated: typeof elements) => {
+    setElements(updated);
     setErrorMessage(null);
     setFerrResults(null);
   };
@@ -175,6 +183,7 @@ export default function PoteauPage() {
 
     const data: FerrFormData = {
       As: Number(ferrFormData.As),
+      elements,
     };
 
     const base = calculerFerrResultats(data);
@@ -246,6 +255,8 @@ export default function PoteauPage() {
               onChange={handleFerrChange}
               onSubmit={handleFerrSubmit}
               errorMessage={errorMessage}
+              elements={elements}
+              setElements={handleElementsChange}
             />
           )}
 

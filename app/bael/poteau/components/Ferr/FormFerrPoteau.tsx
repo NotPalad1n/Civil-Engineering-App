@@ -1,20 +1,23 @@
 'use client';
-import { useState } from 'react';
 import ListeArmatures from './ListeArmatures';
+
+interface ElementData {
+  id: string;
+  nombre: string;
+  diametre: string;
+}
 
 interface FormPoteauProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
   errorMessage: string | null;
+  elements: ElementData[];                      // 🔹 new
+  setElements: (updated: ElementData[]) => void; // 🔹 new
 }
 
-export default function FormFerrPoteau({ formData, onChange, onSubmit, errorMessage }: FormPoteauProps) {
-  
-  const [elements, setElements] = useState([
-  { id: '0', nombre: '', diametre: '' }
-  ]);
-  
+export default function FormFerrPoteau({ formData, onChange, onSubmit, errorMessage, elements, setElements, }: FormPoteauProps) {
+
   const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
   // const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
 
