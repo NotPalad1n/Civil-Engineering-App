@@ -22,7 +22,6 @@ export default function ResultatsDalle({ results }: ResultatsDalleProps) {
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full w-full lg:max-h-[556px] overflow-y-scroll overflow-x-hidden">
       {results ? (
         <>
-          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
           <InlineMath math={`\\textbf{Résultats à l’ ELU // x :}`}/>
 
@@ -48,9 +47,6 @@ export default function ResultatsDalle({ results }: ResultatsDalleProps) {
           <InlineMath math={`S_{t~x} = ${results.Stx}~\\text{cm}^2`} />
           <InlineMath math={`S_{t~y} = ${results.Sty}~\\text{cm}^2`} />
           
-          <InlineMath math={`\\textbf{Suggestion d’armature :}`}/>
-
-          <InlineMath math={`\\text{${results.suggestion}}`} />
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

@@ -16,7 +16,7 @@ export default function ResultatsSemelle({ results }: ResultatsSemelleProps) {
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
+        
           <InlineMath math={`\\textbf{Ferraillage de la semelle :}`}/>
 
           <InlineMath math={`\\text{Ferraillage // A}`}/>
@@ -29,9 +29,6 @@ export default function ResultatsSemelle({ results }: ResultatsSemelleProps) {
 
           <InlineMath math={`\\text{${results.message}}`} />
 
-          <InlineMath math={`\\textbf{Suggestion d’armature :}`}/>
-
-          <InlineMath math={`\\text{${results.suggestion}}`} />
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

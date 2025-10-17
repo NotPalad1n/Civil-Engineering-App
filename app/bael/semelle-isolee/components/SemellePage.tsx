@@ -13,8 +13,6 @@ import FormFerr from '../../Ferr/FormFerr';
 import ResultatsFerr from '../../Ferr/ResultatsFerr';
 import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
-import { suggererArmatures } from './armatures';
-
 export default function SemellePage() {
   
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
@@ -91,7 +89,7 @@ export default function SemellePage() {
     fe: '500',
   });
 
-  const [results, setResults] = useState<(BaseResults & { suggestion: string }) | null>(null);
+  const [results, setResults] = useState<(BaseResults) | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -141,9 +139,8 @@ export default function SemellePage() {
     };
 
     const base = calculerBaseResultats(data);
-    const suggestion = suggererArmatures(0, data.largeur, data.hauteur); // base.As, data.largeur, data.longueur
 
-    setResults({ ...base, suggestion });
+    setResults(base);
   };
 
   //

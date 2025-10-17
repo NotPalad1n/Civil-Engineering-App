@@ -22,7 +22,6 @@ export default function ResultatsPoutre({ results }: ResultatsPoutreProps) {
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full w-full lg:max-h-[556px] overflow-y-scroll overflow-x-hidden">
       {results ? (
         <>
-          {/* <h2 className="text-xl font-bold mb-4 text-center">Résultats du calcul</h2> */}
 
           <InlineMath math={`\\textbf{Résultats à l’ ELU :}`}/>
 
@@ -45,8 +44,6 @@ export default function ResultatsPoutre({ results }: ResultatsPoutreProps) {
           <InlineMath math={`\\text{${results.cour1}}`}/>
           <InlineMath math={`\\text{${results.autres}}`}/>
 
-          <InlineMath math={`\\textbf{Suggestion d’armature :}`} />
-          <InlineMath math={`\\text{${results.suggestion}}`}/>
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

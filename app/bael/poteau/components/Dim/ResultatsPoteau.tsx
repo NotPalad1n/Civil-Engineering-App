@@ -18,7 +18,6 @@ export default function ResultatsPoteau({ results }: ResultatsPoteauProps) {
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
           <InlineMath math={`\\textbf{Elancement :}`}/>
           <InlineMath math={`\\lambda = ${results.lambda}`} />
@@ -31,8 +30,6 @@ export default function ResultatsPoteau({ results }: ResultatsPoteauProps) {
           <InlineMath math={`\\textbf{Section d'acier nécessaire :}`}/>
           <InlineMath math={`A_{s} = ${results.As}~\\text{cm}^2`} />
 
-          <InlineMath math={`\\textbf{Suggestion d’armature :}`} />
-          <InlineMath math={`\\text{${results.suggestion}}`}/>
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>

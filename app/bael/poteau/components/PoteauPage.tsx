@@ -13,10 +13,6 @@ import FormFerr from '../../Ferr/FormFerr';
 import ResultatsFerr from '../../Ferr/ResultatsFerr';
 import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
-
-
-import { suggererArmatures } from './armatures';
-
 export default function PoteauPage() {
 
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
@@ -85,7 +81,7 @@ export default function PoteauPage() {
     fe: '500',
   });
 
-  const [results, setResults] = useState<(BaseResults & { suggestion: string }) | null>(null);
+  const [results, setResults] = useState<(BaseResults) | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -131,9 +127,8 @@ export default function PoteauPage() {
     };
 
     const base = calculerBaseResultats(data);
-    const suggestion = suggererArmatures(base.As, data.largeur, data.longueur);
 
-    setResults({ ...base, suggestion });
+    setResults(base);
   };
 
   //
