@@ -43,6 +43,7 @@ export default function PoteauPage() {
       'Nu',
       'largeur',
     ];
+
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
@@ -50,6 +51,7 @@ export default function PoteauPage() {
         return false;
       }
     }
+
     return true;
   };
 
@@ -102,6 +104,7 @@ export default function PoteauPage() {
       'fe',
       'facteurFlambement',
     ];
+
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
@@ -109,6 +112,12 @@ export default function PoteauPage() {
         return false;
       }
     }
+
+    if (formData.largeur > formData.longueur) {
+      setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
+      return false;
+    }
+
     return true;
   };
 

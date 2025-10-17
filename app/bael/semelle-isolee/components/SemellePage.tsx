@@ -47,6 +47,7 @@ export default function SemellePage() {
       'contrainte',
       'Nser',
     ];
+
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
@@ -54,6 +55,12 @@ export default function SemellePage() {
         return false;
       }
     }
+
+    if (formData.largeurPoteau > formData.longueurPoteau) {
+      setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
+      return false;
+    }
+    
     return true;
   };
 
@@ -112,6 +119,7 @@ export default function SemellePage() {
       'Nser',
       'fe',
     ];
+
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
@@ -119,6 +127,17 @@ export default function SemellePage() {
         return false;
       }
     }
+
+    if (formData.largeur > formData.longueur) {
+      setErrorMessage("La largeur de la semelle doit être inferieur à la longueur de la semelle.");
+      return false;
+    }
+
+    if (formData.largeurPoteau > formData.longueurPoteau) {
+      setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
+      return false;
+    }
+
     return true;
   };
 
