@@ -156,7 +156,7 @@ export default function CorrelationsPage() {
         
         <div className='w-full lg:w-1/2'>
 
-          <div className="flex space-x-4 justify-center mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 justify-center mb-10">
 
             <button
               onClick={() => setActiveTab('AngleFrottement')}

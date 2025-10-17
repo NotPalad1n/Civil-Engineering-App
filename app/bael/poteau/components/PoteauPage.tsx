@@ -9,9 +9,9 @@ import FormPoteau from './Dim/FormPoteau';
 import ResultatsPoteau from './Dim/ResultatsPoteau';
 import { calculerBaseResultats, FormData, BaseResults } from './Dim/calculs';
 
-import FormFerrPoteau from './Ferr/FormFerrPoteau';
-import ResultatsFerrPoteau from './Ferr/ResultatsFerrPoteau';
-import { calculerFerrResultats, FerrFormData, FerrResults } from './Ferr/calculsFerr';
+import FormFerr from '../../Ferr/FormFerr';
+import ResultatsFerr from '../../Ferr/ResultatsFerr';
+import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
 
 
@@ -250,7 +250,7 @@ export default function PoteauPage() {
             />
           )}
           {activeTab === 'ferr' && (
-            <FormFerrPoteau
+            <FormFerr
               formData={ferrFormData}
               onChange={handleFerrChange}
               onSubmit={handleFerrSubmit}
@@ -264,50 +264,52 @@ export default function PoteauPage() {
 
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
-        {activeTab === 'dim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPoteau results={results} />
-          </div>
-        )}
-        {activeTab === 'predim' && (
-          
-          <div className='lg:w-1/2 flex flex-col'>
-
-            <div className='w-full min-h-full'>
-              <ResultatsPreDimPoteau results={preDimResults}/>
+          {activeTab === 'dim' && (
+            <div className='w-full lg:w-1/2 min-h-full'>
+              <ResultatsPoteau results={results} />
             </div>
+          )}
+          
+          {activeTab === 'predim' && (
+            
+            <div className='lg:w-1/2 flex flex-col'>
 
-            {preDimResults && (
-
-              <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
-                <button 
-                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
-                  onClick={() => {
-                  setFormData?.((prev) => ({
-                    ...prev,
-                    largeur: preDimResults?.asq?.toString() ?? '',
-                    longueur: preDimResults?.bsq?.toString() ?? '',
-                    Nu: preDimFormData?.Nu?.toString() ?? '',
-                  }));
-                  setActiveTab?.('dim');
-                }
-              }
-                >
-                  Exporter vers dimensionnement →
-                </button>
+              <div className='w-full min-h-full'>
+                <ResultatsPreDimPoteau results={preDimResults}/>
               </div>
-              
-            )}
 
-          </div>
-        )}
-        {activeTab === 'ferr' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsFerrPoteau results={ferrResults} />
-          </div>
-        )}
+              {preDimResults && (
 
-      </div>
+                <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
+                  <button 
+                    className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
+                    onClick={() => {
+                    setFormData?.((prev) => ({
+                      ...prev,
+                      largeur: preDimResults?.asq?.toString() ?? '',
+                      longueur: preDimResults?.bsq?.toString() ?? '',
+                      Nu: preDimFormData?.Nu?.toString() ?? '',
+                    }));
+                    setActiveTab?.('dim');
+                  }
+                }
+                  >
+                    Exporter vers dimensionnement →
+                  </button>
+                </div>
+                
+              )}
+
+            </div>
+          )}
+
+          {activeTab === 'ferr' && (
+            <div className='w-full lg:w-1/2 min-h-full'>
+              <ResultatsFerr results={ferrResults} />
+            </div>
+          )}
+
+        </div>
 
     </main>
   );

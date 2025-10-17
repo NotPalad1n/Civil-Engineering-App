@@ -6,11 +6,11 @@ interface Results {
   verification?: string;
 }
 
-interface ResultatsPoteauProps {
+interface ResultatsProps {
   results: Results | null;
 }
 
-export default function ResultatsFerrPoteau({ results}: ResultatsPoteauProps) {
+export default function ResultatsFerr({ results}: ResultatsProps) {
   return (
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (

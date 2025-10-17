@@ -7,7 +7,7 @@ interface ElementData {
   diametre: string;
 }
 
-interface FormPoteauProps {
+interface FormProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
@@ -16,7 +16,7 @@ interface FormPoteauProps {
   setElements: (updated: ElementData[]) => void; // 🔹 new
 }
 
-export default function FormFerrPoteau({ formData, onChange, onSubmit, errorMessage, elements, setElements, }: FormPoteauProps) {
+export default function FormFerr({ formData, onChange, onSubmit, errorMessage, elements, setElements, }: FormProps) {
 
   const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
   // const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
