@@ -30,9 +30,6 @@ export function calculerFerrResultats(data: FerrFormData): FerrResults {
       return sum;
     }, 0);
 
-    console.log(As);
-    console.log(elements);
-
     if (As>AsFourni) {
       verification = "Section non verifiée";
     }

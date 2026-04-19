@@ -16,7 +16,7 @@ export default function ListeArmatures({
 
   const fieldClass ='flex flex-col items-start justify-center gap-1 w-full';
   const inputClass ='w-full border border-gray-300 rounded px-2 py-1 h-10 appearance-none';
-  const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10';
+  const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 cursor-pointer';
 
   const handleChange = (
     index: number,
@@ -82,7 +82,7 @@ export default function ListeArmatures({
                 onChange={(e) =>
                   handleChange(index, 'nombre', e.target.value)
                 }
-                className={inputClass}
+                className={`${inputClass} bg-white`}
               />
             </div>
 
@@ -92,8 +92,9 @@ export default function ListeArmatures({
               <select
                 value={element.diametre}
                 onChange={(e) => handleChange(index, 'diametre', e.target.value)}
-                className={selectClass}
+                className={`${selectClass} bg-white `}
               >
+                <option value="-">-</option>
                 <option value="8">8</option>
                 <option value="10">10</option>
                 <option value="12">12</option>

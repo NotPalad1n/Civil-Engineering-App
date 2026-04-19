@@ -135,9 +135,9 @@ export default function PoteauPage() {
       fe: Number(formData.fe),
     };
 
-    const base = calculerBaseResultats(data);
+    const results = calculerBaseResultats(data);
 
-    setResults(base);
+    setResults(results);
   };
 
   //

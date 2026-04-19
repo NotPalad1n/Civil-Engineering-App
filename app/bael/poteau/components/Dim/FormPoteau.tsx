@@ -25,7 +25,7 @@ export default function FormPoteau({ formData, onChange, onSubmit, errorMessage 
       </div>
 
       <div>
-        <label className="block mb-1">Facteur de flambement</label>
+        <label className="block mb-1">Coefficient de flambement</label>
         <select
           name="facteurFlambement"
           value={formData.facteurFlambement}

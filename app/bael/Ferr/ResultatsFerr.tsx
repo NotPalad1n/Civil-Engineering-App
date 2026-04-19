@@ -20,7 +20,6 @@ export default function ResultatsFerr({ results}: ResultatsProps) {
           <InlineMath math={`\\textbf{Section d’acier fourni :}`}/>
           <InlineMath math={`${results.AsFourni}`} />
           <InlineMath math={`\\text{${results.verification}}`} />
-          
         </>
       ) : (
         <p className="text-center text-gray-500">Remplissez le formulaire et cliquez sur calculer.</p>
