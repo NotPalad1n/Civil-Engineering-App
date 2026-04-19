@@ -56,12 +56,12 @@ export default function ResultatsPoteau({ results }: ResultatsPoteauProps) {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-full bg-gray-100 rounded">
+    <div className="flex flex-col items-center w-full h-full bg-gray-100 rounded-md mt-9 lg:mt-0">
 
       {/* Contenu */}
       <div 
         ref={printRef}
-        className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 space-y-3 w-full p-6"
+        className="flex flex-col items-center bg-gray-100 space-y-3 w-full rounded-md p-6"
       >
         {results ? (
           <>
