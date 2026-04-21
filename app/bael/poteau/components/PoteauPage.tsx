@@ -269,39 +269,114 @@ export default function PoteauPage() {
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
           {activeTab === 'dim' && (
-            <div className='w-full lg:w-1/2 min-h-full'>
-              <ResultatsPoteau results={results} />
+
+            <div className='lg:w-1/2 flex relative'>
+
+              <div className='w-full min-h-full'>
+                <ResultatsPoteau results={results} />
+              </div>
+
+              {/* {results && (
+
+                <div className='absolute w-full bottom-5 flex justify-center align-bottom'>
+                  <button 
+                    className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
+                    onClick={() => {
+                        setFerrFormData?.((prev) => ({
+                          ...prev,
+                          As: results?.As?.toString() ?? '',
+                        }));
+                        setActiveTab?.('ferr');
+                      }
+                    }
+                  >
+                    Exporter vers ferraillage →
+                  </button>
+                </div>
+                
+              )} */}
+
+              {results && (
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 animate-bounce-subtle z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0">
+                  <div className="text-sm">
+                    <span className="font-bold text-blue-600">Calcul terminé !</span>
+                    <p className="text-gray-500">Section nécessaire : <span className="font-semibold text-gray-700">{results.As} cm²</span></p>
+                  </div>
+                  <button 
+                    onClick={() => {
+                        setFerrFormData?.((prev) => ({
+                          ...prev,
+                          As: results?.As?.toString() ?? '',
+                        }));
+                        setActiveTab?.('ferr');
+                      }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Configurer le ferraillage
+                  </button>
+                </div>
+              )}
+
             </div>
+
           )}
           
           {activeTab === 'predim' && (
             
-            <div className='lg:w-1/2 flex flex-col'>
+            <div className='lg:w-1/2 flex relative'>
 
               <div className='w-full min-h-full'>
                 <ResultatsPreDimPoteau results={preDimResults}/>
               </div>
 
-              {preDimResults && (
+              {/* {preDimResults && (
 
-                <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
+                <div className='absolute w-full bottom-5 flex justify-center align-bottom'>
                   <button 
                     className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
                     onClick={() => {
-                    setFormData?.((prev) => ({
-                      ...prev,
-                      largeur: preDimResults?.asq?.toString() ?? '',
-                      longueur: preDimResults?.bsq?.toString() ?? '',
-                      Nu: preDimFormData?.Nu?.toString() ?? '',
-                    }));
-                    setActiveTab?.('dim');
-                  }
-                }
+                        setFormData?.((prev) => ({
+                          ...prev,
+                          largeur: preDimResults?.asq?.toString() ?? '',
+                          longueur: preDimResults?.bsq?.toString() ?? '',
+                          Nu: preDimFormData?.Nu?.toString() ?? '',
+                        }));
+                        setActiveTab?.('dim');
+                      }
+                    }
                   >
                     Exporter vers dimensionnement →
                   </button>
                 </div>
                 
+              )} */}
+
+              {preDimResults && (
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 animate-bounce-subtle z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0">
+                  {/* Texte informatif */}
+                  <div className="text-sm">
+                    <span className="font-bold text-blue-600 block">Calcul terminé !</span>
+                    <p className="text-gray-500">
+                      Section suggérée : <span className="font-semibold text-gray-700">{preDimResults.asq} × {preDimResults.bsq} cm</span>
+                    </p>
+                  </div>
+
+                  {/* Bouton d'action avec ta logique de transfert */}
+                  <button 
+                    onClick={() => {
+                      setFormData?.((prev) => ({
+                        ...prev,
+                        largeur: preDimResults?.asq?.toString() ?? '',
+                        longueur: preDimResults?.bsq?.toString() ?? '',
+                        Nu: preDimFormData?.Nu?.toString() ?? '',
+                      }));
+                      setActiveTab?.('dim');
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Dimensionner la section
+                  </button>
+                </div>
               )}
 
             </div>

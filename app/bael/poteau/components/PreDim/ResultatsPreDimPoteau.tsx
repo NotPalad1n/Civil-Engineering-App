@@ -16,17 +16,31 @@ export default function ResultatsPreDimPoteau({ results}: ResultatsPoteauProps) 
     <div className="flex flex-col items-center mt-10 lg:mt-0 bg-gray-100 p-6 rounded space-y-3 h-full">
       {results ? (
         <>
-          {/* <h2 className="text-xl font-semibold mb-4 text-center">Résultats</h2> */}
 
-          <InlineMath math={`\\textbf{Dimensions au cas carré :}`}/>
+          {/* Titre Principal */}
+          <div className="w-full text-center border-b border-gray-700 pb-4 mb-6">
+            <InlineMath math={`\\large \\textbf{Prédimensionnement - Poteau}`} />
+          </div>
 
-          <InlineMath math={`a = ${results.asq}~\\text{cm}`} />
-          <InlineMath math={`b = ${results.bsq}~\\text{cm}`} />
+          {/* I. Dimensions au cas carré */}
+          <section className="w-full">
+            <div className="text-left text-gray-800 font-bold mb-2 border-l-4 border-blue-600 pl-2">
+              <InlineMath math={`\\text{I. Dimensions au cas carré}`} />
+            </div>
+            <div className="text-center bg-gray-50 py-3 rounded">
+              <InlineMath math={`a = ${results.asq}~\\text{cm ; } b = ${results.bsq}~\\text{cm}`} />
+            </div>
+          </section>
 
-          <InlineMath math={`\\textbf{Dimensions au cas rectangle :}`}/>
-
-          <InlineMath math={`a = ${results.a}~\\text{cm}`} />
-          <InlineMath math={`b = ${results.b}~\\text{cm}`} />
+          {/* II. Dimensions au cas rectangle */}
+          <section className="w-full">
+            <div className="text-left text-gray-800 font-bold mb-2 border-l-4 border-blue-600 pl-2">
+              <InlineMath math={`\\text{II. Dimensions au cas rectangle}`} />
+            </div>
+            <div className="text-center bg-gray-50 py-3 rounded">
+              <InlineMath math={`a = ${results.a}~\\text{cm ; } b = ${results.b}~\\text{cm}`} />
+            </div>
+          </section>
           
         </>
       ) : (

@@ -86,7 +86,7 @@ export default function ResultatsPoteau({ results }: ResultatsPoteauProps) {
               <div className="text-left text-gray-800 font-bold mb-2 border-l-4 border-blue-600 pl-2">
                 <InlineMath math={`\\text{II. Caractéristiques de flambement}`} />
               </div>
-              <div className="flex flex-col items-center bg-gray-50 py-3 rounded shadow-sm">
+              <div className="flex flex-col items-center bg-gray-50 py-3 rounded">
                 <InlineMath math={`k = ${results.f}`} />
                 <InlineMath math={`L_{f} = ${results.Lf}~\\text{m}`} />
                 <InlineMath math={`\\lambda = ${results.lambda}`} />
@@ -153,7 +153,7 @@ export default function ResultatsPoteau({ results }: ResultatsPoteauProps) {
         <div className="flex">
           <button
             onClick={handleDownloadPdf}
-            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md shadow-md transition-all cursor-pointer font-semibold mb-6 "
+            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md transition-all cursor-pointer font-semibold mb-6 "
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
