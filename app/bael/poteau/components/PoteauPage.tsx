@@ -19,6 +19,7 @@ export default function PoteauPage() {
 
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorTitle, setErrorTitle] = useState<string | null>(null);
 
   //
   // Pre-dimensionnement
@@ -37,6 +38,7 @@ export default function PoteauPage() {
     const { name, value } = e.target;
     setPreDimFormData({ ...preDimFormData, [name]: value });
     setErrorMessage(null);
+    setErrorTitle(null);
     setPreDimResults(null);
   };
 
@@ -49,6 +51,7 @@ export default function PoteauPage() {
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -92,6 +95,7 @@ export default function PoteauPage() {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setResults(null);
   };
@@ -110,12 +114,14 @@ export default function PoteauPage() {
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
     }
 
     if (formData.largeur > formData.longueur) {
+      setErrorTitle('Erreur de saisie');
       setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
       return false;
     }
@@ -159,12 +165,14 @@ export default function PoteauPage() {
   const handleFerrChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFerrFormData({ ...ferrFormData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setFerrResults(null);
   };
 
   const handleElementsChange = (updated: typeof elements) => {
     setElements(updated);
+    setErrorTitle(null);
     setErrorMessage(null);
     setFerrResults(null);
   };
@@ -176,6 +184,7 @@ export default function PoteauPage() {
     for (const key of requiredFields) {
       const value = ferrFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -214,7 +223,10 @@ export default function PoteauPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center mb-10">
 
             <button
-              onClick={() => setActiveTab('predim')}
+              onClick={() => {
+                setActiveTab('predim');
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'predim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -222,7 +234,10 @@ export default function PoteauPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab('dim')}
+              onClick={() => {
+                setActiveTab('dim');
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -230,7 +245,10 @@ export default function PoteauPage() {
             </button>
 
             <button
-              onClick={() => setActiveTab('ferr')}
+              onClick={() => {
+                setActiveTab('ferr');
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'ferr' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -239,22 +257,22 @@ export default function PoteauPage() {
 
           </div>
 
-          {activeTab === 'dim' && (
+          {activeTab === 'dim' && (     
             <FormPoteau
               formData={formData}
               onChange={handleChange}
               onSubmit={handleSubmit}
-              errorMessage={errorMessage}
             />
           )}
+
           {activeTab === 'predim' && (
             <FormPreDimPoteau
               formData={preDimFormData}
               onChange={handlePreDimChange}
               onSubmit={handlePreDimSubmit}
-              errorMessage={errorMessage}
             />
           )}
+
           {activeTab === 'ferr' && (
             <FormFerr
               formData={ferrFormData}
@@ -265,6 +283,49 @@ export default function PoteauPage() {
               setElements={handleElementsChange}
             />
           )}
+
+          <AnimatePresence>
+            {errorMessage && (
+              /* Wrapper de centrage pour éviter les conflits de transform */
+              <div className="fixed bottom-6 inset-x-0 flex justify-center z-[100] pointer-events-none px-4">
+                
+                <motion.div 
+                  initial={{ y: 70, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 70, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                  
+                  /* Styling Error : Fond rouge très léger, bordure rouge prononcée */
+                  className="pointer-events-auto bg-red-50 shadow-2xl border border-red-200 rounded-2xl p-4 flex items-center space-x-4 w-full max-w-[450px]"
+                >
+                  {/* Icône d'alerte */}
+                  <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+
+                  {/* Message d'erreur */}
+                  <div className="flex-1">
+                    <span className="font-bold text-red-800 block text-sm">{errorTitle}</span>
+                    <p className="text-red-600 text-xs leading-relaxed">
+                      {errorMessage}
+                    </p>
+                  </div>
+
+                  {/* Bouton pour fermer le message (optionnel) */}
+                  <button 
+                    onClick={() => setErrorMessage(null)}
+                    className="text-red-400 hover:text-red-600 transition-colors p-1 cursor-pointer"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
 
         </div>
 

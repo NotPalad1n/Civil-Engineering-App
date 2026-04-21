@@ -2,11 +2,11 @@ interface FormPoteauProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
-  errorMessage: string | null;
 }
 
-export default function FormPreDimPoteau({ formData, onChange, onSubmit, errorMessage }: FormPoteauProps) {
-  const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
+export default function FormPreDimPoteau({ formData, onChange, onSubmit}: FormPoteauProps) {
+
+  const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none onWheel={(e) => e.currentTarget.blur()}';
 
   return (
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
@@ -42,7 +42,6 @@ export default function FormPreDimPoteau({ formData, onChange, onSubmit, errorMe
           Calculer
       </button>
 
-      {errorMessage && <p className="mt-4 text-red-600 text-center">{errorMessage}</p>}
     </form>
   );
 }
