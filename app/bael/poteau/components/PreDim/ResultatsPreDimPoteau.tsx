@@ -18,8 +18,14 @@ export default function ResultatsPreDimPoteau({ results}: ResultatsPoteauProps) 
         <>
 
           {/* Titre Principal */}
-          <div className="w-full text-center border-b border-gray-700 pb-4 mb-6">
+          <div className="w-full text-center border-b border-gray-700 pb-4 mb-6 hidden lg:block md:block">
             <InlineMath math={`\\large \\textbf{Prédimensionnement - Poteau}`} />
+          </div>
+
+          {/* Titre Principal */}
+          <div className="flex flex-col w-full text-center border-b border-gray-700 pb-4 mb-6 lg:hidden md:hidden">
+            <InlineMath math={`\\large \\textbf{Prédimensionnement -}`} />
+            <InlineMath math={`\\large \\textbf{Poteau}`} />
           </div>
 
           {/* I. Dimensions au cas carré */}
