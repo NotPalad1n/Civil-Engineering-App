@@ -7,7 +7,6 @@ export interface PreDimFormData {
 export interface PreDimResults {
   b: number;
   h: number;
-  message: string;
 }
 
 export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {  
@@ -16,9 +15,8 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     const forme = data.forme;
     const chargement = data.chargement;
 
-    const b = 25;
-    const message = "Vous pouver ajuster b selon votre cas."
     let h = 0;
+    let b = 0;
 
     if(forme === "Isolée"){
         if(chargement === "CC"){
@@ -45,9 +43,12 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
 
     h = Math.ceil(h / 5) * 5;
 
+    b = Math.max(h/3, 25);
+
+    b = Math.ceil(b / 5) * 5;
+
     return {
     b: parseFloat(b.toFixed(2)),
     h: parseFloat(h.toFixed(2)),
-    message: message,
     };
 }

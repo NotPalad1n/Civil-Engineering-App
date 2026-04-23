@@ -225,6 +225,7 @@ export default function PoteauPage() {
             <button
               onClick={() => {
                 setActiveTab('predim');
+                setErrorTitle(null);
                 setErrorMessage(null);
               }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
@@ -236,6 +237,7 @@ export default function PoteauPage() {
             <button
               onClick={() => {
                 setActiveTab('dim');
+                setErrorTitle(null);
                 setErrorMessage(null);
               }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
@@ -247,6 +249,7 @@ export default function PoteauPage() {
             <button
               onClick={() => {
                 setActiveTab('ferr');
+                setErrorTitle(null);
                 setErrorMessage(null);
               }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
@@ -296,7 +299,7 @@ export default function PoteauPage() {
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   
                   /* Styling Error : Fond rouge très léger, bordure rouge prononcée */
-                  className="pointer-events-auto bg-red-50 shadow-2xl border border-red-200 rounded-2xl p-4 flex items-center space-x-4 w-full max-w-[450px]"
+                  className="pointer-events-auto bg-red-50 shadow-2xl border border-red-200 rounded-2xl p-4 flex items-center space-x-4 w-full max-w-[500px]"
                 >
                   {/* Icône d'alerte */}
                   <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
@@ -352,7 +355,7 @@ export default function PoteauPage() {
                   /* Réglage de la fluidité (type "ressort" pour un côté pro) */
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   
-                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 animate-bounce-subtle z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
                   >
                     <div className="text-sm">
                       <span className="font-bold text-blue-600">Calcul terminé !</span>
@@ -399,7 +402,7 @@ export default function PoteauPage() {
                   /* Réglage de la fluidité (type "ressort" pour un côté pro) */
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
 
-                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 animate-bounce-subtle z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
                   >
                     {/* Texte informatif */}
                     <div className="text-sm">

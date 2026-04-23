@@ -2,10 +2,9 @@ interface FormPoutreProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
-  errorMessage: string | null;
 }
 
-export default function FormPreDimPoutre({ formData, onChange, onSubmit, errorMessage }: FormPoutreProps) {
+export default function FormPreDimPoutre({ formData, onChange, onSubmit }: FormPoutreProps) {
   const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
   const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
 
@@ -58,7 +57,6 @@ export default function FormPreDimPoutre({ formData, onChange, onSubmit, errorMe
             Calculer
         </button>
 
-        {errorMessage && <p className="mt-4 text-red-600 text-center">{errorMessage}</p>}
     </form>
   );
 }

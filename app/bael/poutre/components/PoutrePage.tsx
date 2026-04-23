@@ -13,10 +13,13 @@ import FormFerr from '../../Ferr/FormFerr';
 import ResultatsFerr from '../../Ferr/ResultatsFerr';
 import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
+import { motion, AnimatePresence } from "framer-motion";
+
 export default function PoutrePage() {
 
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorTitle, setErrorTitle] = useState<string | null>(null);
 
   //
   // Pre-dimensionnement
@@ -36,6 +39,7 @@ export default function PoutrePage() {
     const { name, value } = e.target;
     setPreDimFormData({ ...preDimFormData, [name]: value });
     setErrorMessage(null);
+    setErrorTitle(null);
     setPreDimResults(null);
   };
 
@@ -46,6 +50,7 @@ export default function PoutrePage() {
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -90,6 +95,7 @@ export default function PoutrePage() {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setResults(null);
   };
@@ -105,6 +111,7 @@ export default function PoutrePage() {
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -149,6 +156,7 @@ export default function PoutrePage() {
   const handleFerrChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFerrFormData({ ...ferrFormData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setFerrResults(null);
   };
@@ -166,6 +174,7 @@ export default function PoutrePage() {
     for (const key of requiredFields) {
       const value = ferrFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -204,7 +213,11 @@ export default function PoutrePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center mb-10">
 
             <button
-              onClick={() => setActiveTab('predim')}
+              onClick={() => {
+                setActiveTab('predim');
+                setErrorTitle(null);
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
               ${activeTab === 'predim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -212,7 +225,11 @@ export default function PoutrePage() {
             </button>
 
             <button
-              onClick={() => setActiveTab('dim')}
+              onClick={() => {
+                setActiveTab('dim');
+                setErrorTitle(null);
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
               ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -220,7 +237,11 @@ export default function PoutrePage() {
             </button>
 
             <button
-              onClick={() => setActiveTab('ferr')}
+              onClick={() => {
+                setActiveTab('ferr');
+                setErrorTitle(null);
+                setErrorMessage(null);
+              }}
               className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
               ${activeTab === 'ferr' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             >
@@ -234,7 +255,6 @@ export default function PoutrePage() {
               formData={formData}
               onChange={handleChange}
               onSubmit={handleSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -243,7 +263,6 @@ export default function PoutrePage() {
               formData={preDimFormData}
               onChange={handlePreDimChange}
               onSubmit={handlePreDimSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -257,6 +276,49 @@ export default function PoutrePage() {
               setElements={handleElementsChange}
             />
           )}
+
+          <AnimatePresence>
+            {errorMessage && (
+              /* Wrapper de centrage pour éviter les conflits de transform */
+              <div className="fixed bottom-6 inset-x-0 flex justify-center z-[100] pointer-events-none px-4">
+                
+                <motion.div 
+                  initial={{ y: 70, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 70, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                  
+                  /* Styling Error : Fond rouge très léger, bordure rouge prononcée */
+                  className="pointer-events-auto bg-red-50 shadow-2xl border border-red-200 rounded-2xl p-4 flex items-center space-x-4 w-full max-w-[500px]"
+                >
+                  {/* Icône d'alerte */}
+                  <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+
+                  {/* Message d'erreur */}
+                  <div className="flex-1">
+                    <span className="font-bold text-red-800 block text-sm">{errorTitle}</span>
+                    <p className="text-red-600 text-xs leading-relaxed">
+                      {errorMessage}
+                    </p>
+                  </div>
+
+                  {/* Bouton pour fermer le message (optionnel) */}
+                  <button 
+                    onClick={() => setErrorMessage(null)}
+                    className="text-red-400 hover:text-red-600 transition-colors p-1 cursor-pointer"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
 
         </div>
 
@@ -276,26 +338,46 @@ export default function PoutrePage() {
               <ResultatsPreDimPoutre results={preDimResults}/>
             </div>
 
-            {preDimResults && (
+            <AnimatePresence>
+              {preDimResults && (
+                <motion.div 
 
-              <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
-                <button 
-                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
-                  onClick={() => {
-                  setFormData?.((prev) => ({
-                    ...prev,
-                    largeur: preDimResults?.b?.toString() ?? '',
-                    hauteur: preDimResults?.h?.toString() ?? '',
-                  }));
-                  setActiveTab?.('dim');
-                }
-              }
+                /* Animation d'entrée : part de 50px vers le bas et invisible */
+                initial={{ y: 50, opacity: 0 }}
+                /* Animation d'état actif : revient à sa place et devient visible */
+                animate={{ y: 0, opacity: 1 }}
+                /* Animation de sortie : repart vers le bas quand results disparait */
+                exit={{ y: 50, opacity: 0 }}
+                /* Réglage de la fluidité (type "ressort" pour un côté pro) */
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+
+                className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
                 >
-                  Exporter vers dimensionnement →
-                </button>
-              </div>
-              
-            )}
+                  {/* Texte informatif */}
+                  <div className="text-sm">
+                    <span className="font-bold text-blue-600 block">Calcul terminé !</span>
+                    <p className="text-gray-500">
+                      Section suggérée : <span className="font-semibold text-gray-700">{preDimResults.b} × {preDimResults.h} cm</span>
+                    </p>
+                  </div>
+
+                  {/* Bouton d'action avec ta logique de transfert */}
+                  <button 
+                    onClick={() => {
+                      setFormData?.((prev) => ({
+                        ...prev,
+                        largeur: preDimResults?.b?.toString() ?? '',
+                        hauteur: preDimResults?.h?.toString() ?? '',
+                      }));
+                      setActiveTab?.('dim');
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Dimensionner la section
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
         )}
