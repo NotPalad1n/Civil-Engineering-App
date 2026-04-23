@@ -15,6 +15,8 @@ import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/cal
 
 import { motion, AnimatePresence } from "framer-motion";
 
+import ErrorToast from '@/app/components/ErrorToast';
+
 export default function PoteauPage() {
 
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
@@ -287,48 +289,11 @@ export default function PoteauPage() {
             />
           )}
 
-          <AnimatePresence>
-            {errorMessage && (
-              /* Wrapper de centrage pour éviter les conflits de transform */
-              <div className="fixed bottom-6 inset-x-0 flex justify-center z-[100] pointer-events-none px-4">
-                
-                <motion.div 
-                  initial={{ y: 70, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 70, opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                  
-                  /* Styling Error : Fond rouge très léger, bordure rouge prononcée */
-                  className="pointer-events-auto bg-red-50 shadow-2xl border border-red-200 rounded-2xl p-4 flex items-center space-x-4 w-full max-w-[500px]"
-                >
-                  {/* Icône d'alerte */}
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-
-                  {/* Message d'erreur */}
-                  <div className="flex-1">
-                    <span className="font-bold text-red-800 block text-sm">{errorTitle}</span>
-                    <p className="text-red-600 text-xs leading-relaxed">
-                      {errorMessage}
-                    </p>
-                  </div>
-
-                  {/* Bouton pour fermer le message (optionnel) */}
-                  <button 
-                    onClick={() => setErrorMessage(null)}
-                    className="text-red-400 hover:text-red-600 transition-colors p-1 cursor-pointer"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </motion.div>
-              </div>
-            )}
-          </AnimatePresence>
+        <ErrorToast 
+          message={errorMessage} 
+          onClose={() => setErrorMessage(null)} 
+          title={errorTitle}
+        />
 
         </div>
 

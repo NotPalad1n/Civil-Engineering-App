@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { InlineMath } from 'react-katex';
 import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';

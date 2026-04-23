@@ -15,6 +15,7 @@ export default function FormPreDimPoteau({ formData, onChange, onSubmit}: FormPo
           <label className="block mb-1">Effort normal N<sub>u</sub> (kN)</label>
           <input
           type="number"
+          step="any"
           inputMode="decimal"
           name="Nu"
           value={formData.Nu}
@@ -27,6 +28,7 @@ export default function FormPreDimPoteau({ formData, onChange, onSubmit}: FormPo
         <label className="block mb-1">Largeur du poteau a (cm)</label>
         <input
           type="number"
+          step="any"
           inputMode="decimal"
           name="largeur"
           value={formData.largeur}

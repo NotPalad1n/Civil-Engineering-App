@@ -113,7 +113,7 @@ export default function ListeArmatures({
         <button
           type="button"
           onClick={handleAddElement}
-          className="text-blue-600 font-bold border border-blue-600 rounded px-4 py-2 hover:bg-blue-50 transition"
+          className="text-blue-600 font-bold border border-blue-600 rounded px-4 py-2 hover:bg-blue-50 transition cursor-pointer"
         >
           + Ajouter un élément
         </button>

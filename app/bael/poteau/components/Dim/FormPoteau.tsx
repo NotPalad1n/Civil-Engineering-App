@@ -15,6 +15,7 @@ export default function FormPoteau({ formData, onChange, onSubmit}: FormPoteauPr
         <label className="block mb-1">Hauteur du poteau h (m)</label>
         <input
           type="number"
+          step="any"
           inputMode="decimal"
           name="hauteurPoteau"
           value={formData.hauteurPoteau}
@@ -44,6 +45,7 @@ export default function FormPoteau({ formData, onChange, onSubmit}: FormPoteauPr
           <label className="block mb-1">Largeur a (cm)</label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="largeur"
             value={formData.largeur}
@@ -56,6 +58,7 @@ export default function FormPoteau({ formData, onChange, onSubmit}: FormPoteauPr
           <label className="block mb-1">Longueur b (cm)</label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="longueur"
             value={formData.longueur}
@@ -72,6 +75,7 @@ export default function FormPoteau({ formData, onChange, onSubmit}: FormPoteauPr
         </label>
         <input
           type="number"
+          step="any"
           inputMode="decimal"
           name="Nu"
           value={formData.Nu}
@@ -87,6 +91,7 @@ export default function FormPoteau({ formData, onChange, onSubmit}: FormPoteauPr
           </label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="fc28"
             value={formData.fc28}
