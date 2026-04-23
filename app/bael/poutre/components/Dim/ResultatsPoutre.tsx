@@ -42,7 +42,8 @@ export default function ResultatsPoutre({ results }: ResultatsPoutreProps) {
       const pdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight]);
       
       pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
-      pdf.save(`Note_de_calcul_Poutre_${results.largeur}x${results.hauteur}.pdf`);
+      // pdf.save(`Note_de_calcul_Poutre_${results.largeur}x${results.hauteur}.pdf`);
+      pdf.save(`Note_de_calcul_Poutre.pdf`);
 
     } catch (err) {
     console.error(err);
