@@ -9,6 +9,19 @@ export interface FormData {
   fe: number;
 }
 
+export interface CadresResults {
+  phiT: number;
+  distFirst: number;
+  distOthers: number;
+  method: "Constant" | "Caquot"; // Type strict pour plus de sécurité
+  isMaximized: boolean;
+}
+
+export interface Warning {
+  tauU: number;
+  limit: number;
+}
+
 export interface BaseResults {
   Ast: number;
   Asc: number;
@@ -17,8 +30,16 @@ export interface BaseResults {
   Stmax: number;
   St: number;
   phiT: number;
-  cour1: string;
-  autres: string;
+  cadresResults: CadresResults;
+  warning?: Warning | null;
+  largeur: number;
+  h: number;
+  Mu: number;
+  Mser: number;
+  Vu: number;
+  fc28: number;
+  fe: number;
+  fissuration: string;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
@@ -45,9 +66,6 @@ export function calculerBaseResultats(data: FormData): BaseResults {
 
   let Asts = 0;
   let Ascs = 0;
-
-  let cour1 = "";
-  let autres = "";
 
   if (fe === 500) {
     // epsilonL = 2.174/1000;
@@ -116,20 +134,25 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   // Effort tranchant
   //
 
-  const tauU = Vu / (b * d * 1000) ; // MPa
+  // 1. Calcul de la contrainte tangente conventionnelle
+  const tauU = Vu / (b * d * 1000); // MPa
 
-  if (tauU > Math.min(0.2*fc28/1.5, 5) && fissuration === 'peu nuisible') // MPa
-  {
-    console.log("Il faut redimentionner la section.");
-  }
+  // 2. Définition des limites selon le BAEL 91
+  const limitPeu = Math.min(0.2 * fc28 / 1.5, 5);
+  const limitPrej = Math.min(0.15 * fc28 / 1.5, 4);
 
-  else if (tauU > Math.min(0.15*fc28/1.5, 4) && fissuration === 'prejudiciable') // MPa
-  {
-    console.log("Il faut redimentionner la section.");
-  }
-  else if (tauU > Math.min(0.15*fc28/1.5, 4) && fissuration === 'tres prejudiciable') // MPa
-  {
-    console.log("Il faut redimentionner la section.");
+  // 3. On détermine la limite applicable à la fissuration actuelle
+  const limitApplicable = (fissuration === 'peu nuisible') ? limitPeu : limitPrej;
+
+  // 4. Initialisation du warning (null par défaut s'il n'y a pas d'erreur)
+  let warning = null;
+
+  // 5. Vérification du non-foudroiement du béton (ELU)
+  if (tauU > limitApplicable) {
+    warning = {
+      tauU: parseFloat(tauU.toFixed(2)),
+      limit: parseFloat(limitApplicable.toFixed(2))
+    };
   }
 
   const phiT = Math.min(h*10/35, 8, b*1000/10); //mm
@@ -142,17 +165,18 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   let St = 0.9*At*fe/(1.15* b * 100 *(tauU - 0.3*ft28)) // cm
 
   Stmax = Math.floor(parseFloat((Stmax/2).toFixed(2)) * 2) / 2;
-  St = Math.floor(parseFloat((St/2).toFixed(2)) * 2) / 2;
+  St = Math.floor(parseFloat((St).toFixed(2)) * 2) / 2;
 
-  if (St > Stmax) {
-    cour1 = "Le 1er cour à " + Stmax + " cm";
-    autres = "les autres à " + Stmax + " cm.";
-  }
-  else
-  {
-    cour1 = "Le 1er cour est à " + St + " cm du nu.";
-    autres = "Les autres sont suivant la serie de Caquot.";
-  }
+  const isMaximized = St > Stmax;
+  const spacingValue = isMaximized ? Stmax : St;
+
+  const cadresResults: CadresResults = {
+    phiT: parseFloat(phiT.toFixed(2)),
+    distFirst: parseFloat((spacingValue / 2).toFixed(2)),
+    distOthers: parseFloat(spacingValue.toFixed(2)),
+    method: isMaximized ? "Constant" : "Caquot",
+    isMaximized: isMaximized
+  };
 
   return {
     Ast: parseFloat(Ast.toFixed(2)),
@@ -162,7 +186,15 @@ export function calculerBaseResultats(data: FormData): BaseResults {
     Stmax: parseFloat(Stmax.toFixed(2)),
     St: parseFloat(St.toFixed(2)),  
     phiT: parseFloat(phiT.toFixed(2)),
-    cour1: cour1,
-    autres: autres,
+    cadresResults,
+    warning,
+    largeur: parseFloat(largeur.toFixed(2)),
+    h: parseFloat(h.toFixed(2)),
+    Mu: parseFloat(Mu.toFixed(2)),
+    Mser: parseFloat(Mser.toFixed(2)),
+    Vu: parseFloat(Vu.toFixed(2)),
+    fc28: parseFloat(fc28.toFixed(2)),
+    fe: parseFloat(fe.toFixed(2)),
+    fissuration,
   };
 }

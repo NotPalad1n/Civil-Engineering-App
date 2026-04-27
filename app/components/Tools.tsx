@@ -1,51 +1,54 @@
 import ToolCard from './ToolCard';
-import { Building2, Ruler, Waves, Mountain, Calculator, Box } from 'lucide-react';
+
+import { SlabIcon, BeamIcon, ColumnIcon, FootingIcon, StripFootingIcon } from './Icons/StructuralIcons';
+import { EqualApproximately} from 'lucide-react';
+
 
 const BAELtools = [
   {
     title: 'Dalle pleine',
-    description: 'Dimensionnement des armatures longitudinales.',
+    description: 'Ferraillage des dalles pleines.',
     href: '/bael/dalle',
-    icon: <Box className="w-6 h-6" />
+    icon: <SlabIcon className="w-8 h-8" />
   },
   {
     title: 'Poutre BA',
     description: 'Calcul ELU/ELS des sections rectangulaires.',
     href: '/bael/poutre',
-    icon: <Ruler className="w-6 h-6" />
+    icon: <BeamIcon className="w-8 h-8" />
   },
   {
     title: 'Poteau BA',
-    description: "Calcul du ferraillage en compression simple.",
+    description: "Calcul du ferraillage longitudinal et transversal.",
     href: '/bael/poteau',
-    icon: <Building2 className="w-6 h-6" />
+    icon: <ColumnIcon className="w-8 h-8" />
   },
   {
-    title: 'Semelle Isolée',
-    description: 'Vérification de la portance et calcul du ferraillage (méthode des bielles).',
+    title: 'Semelle isolée',
+    description: 'Vérification des contraintes au sol et ferraillage de la base.',
     href: '/bael/semelle-isolee',
-    icon: <Calculator className="w-6 h-6" />
+    icon: <FootingIcon className="w-8 h-8" />
   },
   {
-    title: 'Semelle Filante',
-    description: 'Vérification de la portance et calcul du ferraillage (méthode des bielles).',
+    title: 'Semelle filante',
+    description: 'Vérification des contraintes au sol et ferraillage de la base.',
     href: '/bael/semelle-filante',
-    icon: <Calculator className="w-6 h-6" />
+    icon: <StripFootingIcon className="w-8 h-8" />
   }
 ];
 
 const Geotools = [
   {
     title: 'Corrélations',
-    description: 'Estimation des paramètres mécaniques à partir des essais in-situ (SPT, CPT).',
+    description: 'Estimation des paramètres mécaniques à partir des essais in-situ.',
     href: '/geotechnique/correlations',
-    icon: <Waves className="w-6 h-6" />
+    icon: <EqualApproximately className="w-6 h-6" />
   },
   {
     title: 'Fondations',
     description: 'Calcul de la capacité portante et des tassements des fondations superficielles.',
     href: '/geotechnique/fondation',
-    icon: <Mountain className="w-6 h-6" />
+    icon: <FootingIcon className="w-8 h-8" />
   }
 ];
 

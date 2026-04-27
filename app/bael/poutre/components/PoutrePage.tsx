@@ -106,7 +106,9 @@ export default function PoutrePage() {
     const requiredFields = [
       'largeur',
       'hauteur',
-      // 'Mu',
+      'Mu',
+      'Mser',
+      'Vu',
       'fc28',
       'fe',
     ];
@@ -202,6 +204,12 @@ export default function PoutrePage() {
   // UI
   //
 
+  // Calcul de la section déterminante (Traction maximale)
+  const maxAst = results ? Math.max(results.Ast, results.Asts) : 0;
+  // Vérification s'il y a des aciers comprimés
+  const hasAsc = results ? (results.Asc > 0 || results.Ascs > 0) : false;
+  const maxAsc = results ? Math.max(results.Asc, results.Ascs) : 0;
+
   return (
     <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
       <h1 className="text-4xl font-bold mb-10 text-center">
@@ -290,10 +298,62 @@ export default function PoutrePage() {
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
         {activeTab === 'dim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsPoutre results={results} />
+
+          <div className='lg:w-1/2 flex flex-col'>
+            
+            <div className='w-full min-h-full'>
+              <ResultatsPoutre results={results} />
+            </div>
+
+<AnimatePresence>
+  {results && !results.warning && (
+    <motion.div 
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 50, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-8 z-50 flex items-center justify-between lg:min-w-[600px] flex-col lg:flex-row text-center lg:text-left space-y-3 lg:space-y-0"
+    >
+      {/* Résumé des 4 sections */}
+      <div className="flex flex-col border-r-0 lg:border-r border-gray-100 pr-0 lg:pr-6">
+        <span className="font-bold text-blue-600 block text-xs uppercase tracking-wider mb-1">Sections Calculées</span>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[11px]">
+          <p className="text-gray-500">ELU: <span className="font-semibold text-gray-700">{results.Ast} / {results.Asc} cm²</span></p>
+          <p className="text-gray-500">ELS: <span className="font-semibold text-gray-700">{results.Asts} / {results.Ascs} cm²</span></p>
+        </div>
+      </div>
+
+      {/* Valeur déterminante mise en avant */}
+      <div className="flex-1">
+        <p className="text-sm text-gray-600">
+          Section max à ferrailler : <span className="font-bold text-gray-900 text-lg">{maxAst} cm²</span>
+          {hasAsc && <span className="block text-[10px] text-orange-600 font-medium">Aciers comprimés requis ({maxAsc} cm²)</span>}
+        </p>
+      </div>
+
+      {/* Action de transfert */}
+      <button 
+        onClick={() => {
+          setFerrFormData?.((prev) => ({
+            ...prev,
+            As: maxAst.toString(),
+          }));
+          setActiveTab?.('ferr');
+          // Optionnel : Scroller vers le haut pour voir l'onglet
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 min-w-[200px] cursor-pointer text-sm"
+      >
+        Configurer le ferraillage
+      </button>
+    </motion.div>
+  )}
+</AnimatePresence>
+          
           </div>
+
         )}
+        
 
         {activeTab === 'predim' && (
 
