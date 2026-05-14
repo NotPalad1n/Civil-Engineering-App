@@ -13,10 +13,15 @@ import FormFerr from '../../Ferr/FormFerr';
 import ResultatsFerr from '../../Ferr/ResultatsFerr';
 import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
+import { motion, AnimatePresence } from "framer-motion";
+
+import ErrorToast from '@/app/components/ErrorToast';
+
 export default function DallePage() {
   
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorTitle, setErrorTitle] = useState<string | null>(null);
   
   //
   // Pre-dimensionnement
@@ -35,6 +40,7 @@ export default function DallePage() {
   ) => {
     const { name, value } = e.target;
     setPreDimFormData({ ...preDimFormData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setPreDimResults(null);
   };
@@ -46,6 +52,7 @@ export default function DallePage() {
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -90,6 +97,7 @@ export default function DallePage() {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setResults(null);
   };
@@ -106,7 +114,8 @@ export default function DallePage() {
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
-        setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
+        setErrorTitle('Erreur de saisie');
+        setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
         return false;
       }
     }
@@ -150,12 +159,14 @@ export default function DallePage() {
   const handleFerrChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFerrFormData({ ...ferrFormData, [name]: value });
+    setErrorTitle(null);
     setErrorMessage(null);
     setFerrResults(null);
   };
 
   const handleElementsChange = (updated: typeof elements) => {
     setElements(updated);
+    setErrorTitle(null);
     setErrorMessage(null);
     setFerrResults(null);
   };
@@ -167,7 +178,8 @@ export default function DallePage() {
     for (const key of requiredFields) {
       const value = ferrFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
-        setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
+        setErrorTitle('Erreur de saisie');
+        setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
         return false;
       }
     }
@@ -199,6 +211,12 @@ export default function DallePage() {
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">
+
+        <ErrorToast 
+          message={errorMessage} 
+          onClose={() => setErrorMessage(null)} 
+          title={errorTitle}
+        />
         
         <div className='w-full lg:w-1/2'>
 
@@ -235,7 +253,6 @@ export default function DallePage() {
               formData={formData}
               onChange={handleChange}
               onSubmit={handleSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -244,7 +261,6 @@ export default function DallePage() {
               formData={preDimFormData}
               onChange={handlePreDimChange}
               onSubmit={handlePreDimSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -264,9 +280,50 @@ export default function DallePage() {
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
         {activeTab === 'dim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsDalle results={results} />
+
+          <div className='lg:w-1/2 flex flex-col'>
+
+            <div className='w-full min-h-full'>
+              <ResultatsDalle results={results} />
+            </div>
+
+            <AnimatePresence>
+              {results && (
+                <motion.div 
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 50, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+
+                >
+                  {/* Résumé des 4 sections */}
+                  <div className="flex flex-col border-r-0 lg:border-r border-gray-100 pr-0">
+                    <span className="font-bold text-blue-600 block text-sm">Calcul terminé !</span>
+                    <div className="flex space-x-4 text-[11px]">
+                      <p className="text-gray-500">ELU//x: <span className="font-semibold text-gray-700">{results.Astx} / {results.Ascx} cm²</span></p>
+                      <div className="hidden lg:block w-px bg-gray-300"></div>
+                      <p className="text-gray-500">ELU//y: <span className="font-semibold text-gray-700">{results.Asty} / {results.Ascy} cm²</span></p>
+                    </div>
+                  </div>
+
+                  {/* Action de transfert */}
+                  <button 
+                    onClick={() => {
+                      setActiveTab?.('ferr');
+                      // Optionnel : Scroller vers le haut pour voir l'onglet
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Configurer le ferraillage
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </div>
+
         )}
         
         {activeTab === 'predim' && (
@@ -277,27 +334,47 @@ export default function DallePage() {
               <ResultatsPreDimDalle results={preDimResults}/>
             </div>
 
-            {preDimResults && (
+            <AnimatePresence>
+              {preDimResults && (
+                <motion.div 
 
-              <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
-                <button 
-                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
-                  onClick={() => {
-                  setFormData?.((prev) => ({
-                    ...prev,
-                    largeur: preDimFormData?.largeur?.toString() ?? '',
-                    longueur: preDimFormData?.longueur?.toString() ?? '',
-                    epaisseur: preDimResults?.h?.toString() ?? '',
-                  }));
-                  setActiveTab?.('dim');
-                }
-              }
+                /* Animation d'entrée : part de 50px vers le bas et invisible */
+                initial={{ y: 50, opacity: 0 }}
+                /* Animation d'état actif : revient à sa place et devient visible */
+                animate={{ y: 0, opacity: 1 }}
+                /* Animation de sortie : repart vers le bas quand results disparait */
+                exit={{ y: 50, opacity: 0 }}
+                /* Réglage de la fluidité (type "ressort" pour un côté pro) */
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+
+                className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
                 >
-                  Exporter vers dimensionnement →
-                </button>
-              </div>
-              
-            )}
+                  {/* Texte informatif */}
+                  <div className="text-sm">
+                    <span className="font-bold text-blue-600 block">Calcul terminé !</span>
+                    <p className="text-gray-500">
+                      Épaisseur suggérée : <span className="font-semibold text-gray-700">{preDimResults.h} cm</span>
+                    </p>
+                  </div>
+
+                  {/* Bouton d'action avec ta logique de transfert */}
+                  <button 
+                    onClick={() => {
+                      setFormData?.((prev) => ({
+                        ...prev,
+                        largeur: preDimFormData?.largeur?.toString() ?? '',
+                        longueur: preDimFormData?.longueur?.toString() ?? '',
+                        epaisseur: preDimResults?.h?.toString() ?? '',
+                      }));
+                      setActiveTab?.('dim');
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Dimensionner la section
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
 

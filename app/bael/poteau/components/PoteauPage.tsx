@@ -219,6 +219,12 @@ export default function PoteauPage() {
       </h1>
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">
+
+        <ErrorToast 
+          message={errorMessage} 
+          onClose={() => setErrorMessage(null)} 
+          title={errorTitle}
+        />
         
         <div className='w-full lg:w-1/2'>
 
@@ -288,12 +294,6 @@ export default function PoteauPage() {
               setElements={handleElementsChange}
             />
           )}
-
-        <ErrorToast 
-          message={errorMessage} 
-          onClose={() => setErrorMessage(null)} 
-          title={errorTitle}
-        />
 
         </div>
 

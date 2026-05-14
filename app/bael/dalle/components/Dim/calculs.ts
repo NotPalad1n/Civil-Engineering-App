@@ -18,6 +18,11 @@ export interface BaseResults {
   Aymin: number;
   Stx: number;
   Sty: number;
+  h: number;
+  lx: number;
+  ly: number;
+  alpha: number;
+
   message?: string;
 }
 
@@ -30,8 +35,6 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   const Pser = data.Pser; // kN/m²
   const fc28 = data.fc28; // MPa
   const fe = data.fe; // MPa
-
-  console.log(Pser);
 
   //
   // Dalle things
@@ -183,18 +186,18 @@ export function calculerBaseResultats(data: FormData): BaseResults {
 
   if (fissuration === 'peu nuisible') 
   {
-    Stx = Math.min(3*h, 0.33); // m
-    Sty = Math.min(4*h, 0.45); // m
+    Stx = Math.min(3*h, 0.33) * 100; // cm
+    Sty = Math.min(4*h, 0.45) * 100; // cm
   }
   else if (fissuration === 'prejudiciable') 
   {
-    Stx = Math.min(2*h, 0.25); // m
-    Sty = Stx; // m
+    Stx = Math.min(2*h, 0.25) * 100; // cm
+    Sty = Stx * 100; // cm
   }
   else if (fissuration === 'tres prejudiciable') 
   {
-    Stx = Math.min(1.5*h, 0.20); // m
-    Sty = Stx; // m
+    Stx = Math.min(1.5*h, 0.20) * 100; // cm
+    Sty = Stx * 100; // cm
   }
 
   return {
@@ -206,6 +209,11 @@ export function calculerBaseResultats(data: FormData): BaseResults {
     Sty: parseFloat(Sty.toFixed(2)),
     Axmin: parseFloat(Axmin.toFixed(2)),
     Aymin: parseFloat(Aymin.toFixed(2)),
+    h: parseFloat(h.toFixed(2))*100,
+    lx: parseFloat(largeur.toFixed(2)),
+    ly: parseFloat(longueur.toFixed(2)),
+    alpha: parseFloat(alpha.toFixed(2)),
+
     message: message,
   };
 }

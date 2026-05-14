@@ -2,10 +2,9 @@ interface FormDalleProps {
   formData: Record<string, string>;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
-  errorMessage: string | null;
 }
 
-export default function FormDalle({ formData, onChange, onSubmit, errorMessage }: FormDalleProps) {
+export default function FormDalle({ formData, onChange, onSubmit}: FormDalleProps) {
   const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
   const selectClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 bg-white text-gray-800';
 
@@ -18,6 +17,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
           <label className="block mb-1">Largeur l<sub>x</sub> (m)</label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="largeur"
             value={formData.largeur}
@@ -30,6 +30,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
           <label className="block mb-1">Longueur l<sub>y</sub> (m)</label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="longueur"
             value={formData.longueur}
@@ -44,6 +45,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
         <label className="block mb-1">Epaisseur h (cm)</label>
         <input
           type="number"
+          step="any"
           inputMode="decimal"
           name="epaisseur"
           value={formData.epaisseur}
@@ -72,6 +74,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
           </label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="Pu"
             value={formData.Pu}
@@ -85,6 +88,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
           </label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="Pser"
             value={formData.Pser}
@@ -101,6 +105,7 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
           </label>
           <input
             type="number"
+            step="any"
             inputMode="decimal"
             name="fc28"
             value={formData.fc28}
@@ -130,8 +135,6 @@ export default function FormDalle({ formData, onChange, onSubmit, errorMessage }
       >
         Calculer
       </button>
-
-      {errorMessage && <p className="mt-4 text-red-600 text-center">{errorMessage}</p>}
     </form>
   );
 }

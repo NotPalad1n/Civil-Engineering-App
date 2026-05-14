@@ -12,26 +12,26 @@ const BAELtools = [
     icon: <SlabIcon className="w-8 h-8" />
   },
   {
-    title: 'Poutre BA',
-    description: 'Calcul ELU/ELS des sections rectangulaires.',
+    title: 'Poutre en béton armé',
+    description: 'Ferraillage des poutres rectangulaires.',
     href: '/bael/poutre',
     icon: <BeamIcon className="w-8 h-8" />
   },
   {
-    title: 'Poteau BA',
-    description: "Calcul du ferraillage longitudinal et transversal.",
+    title: 'Poteau en béton armé',
+    description: "Ferraillage des poteaux.",
     href: '/bael/poteau',
     icon: <ColumnIcon className="w-8 h-8" />
   },
   {
-    title: 'Semelle isolée',
-    description: 'Vérification des contraintes au sol et ferraillage de la base.',
+    title: 'Semelle isolée centrée',
+    description: 'Ferraillage et vérification des contraintes au sol des semelles isolées centrées.',
     href: '/bael/semelle-isolee',
     icon: <FootingIcon className="w-8 h-8" />
   },
   {
-    title: 'Semelle filante',
-    description: 'Vérification des contraintes au sol et ferraillage de la base.',
+    title: 'Semelle filante centrée',
+    description: 'Ferraillage et vérification des contraintes au sol des semelles filantes centrées.',
     href: '/bael/semelle-filante',
     icon: <StripFootingIcon className="w-8 h-8" />
   }

@@ -6,6 +6,8 @@ export interface PreDimFormData {
 
 export interface PreDimResults {
   h: number;
+  lx: number;
+  ly: number;
 }
 
 export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {  
@@ -38,5 +40,7 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
 
     return {
     h: parseFloat(h.toFixed(2)),
+    lx: parseFloat(lx.toFixed(2)),
+    ly: parseFloat(ly.toFixed(2)),
     };
 }
