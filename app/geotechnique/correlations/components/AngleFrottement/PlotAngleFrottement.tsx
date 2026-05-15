@@ -111,7 +111,8 @@ export default function PlotAngleFrottement({ correlation, userPl, userIp }: Plo
     maintainAspectRatio: false,
     plugins: {
       datalabels: {
-        display: (context) => context.dataset.label === 'Valeur utilisateur',
+        // display: (context) => context.dataset.label === 'Valeur utilisateur',
+        display: false,
         color: 'red',
         font: {
           weight: 'bold',

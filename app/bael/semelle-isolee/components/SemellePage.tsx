@@ -13,10 +13,15 @@ import FormFerr from '../../Ferr/FormFerr';
 import ResultatsFerr from '../../Ferr/ResultatsFerr';
 import { calculerFerrResultats, FerrFormData, FerrResults } from '../../Ferr/calculsFerr';
 
+import { motion, AnimatePresence } from "framer-motion";
+
+import ErrorToast from '@/app/components/ErrorToast';
+
 export default function SemellePage() {
   
   const [activeTab, setActiveTab] = useState<'predim' | 'dim' | 'ferr'>('predim');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorTitle, setErrorTitle] = useState<string | null>(null);
 
   //
   // Pre-dimensionnement
@@ -37,6 +42,7 @@ export default function SemellePage() {
     const { name, value } = e.target;
     setPreDimFormData({ ...preDimFormData, [name]: value });
     setErrorMessage(null);
+    setErrorTitle(null);
     setPreDimResults(null);
   };
 
@@ -51,12 +57,14 @@ export default function SemellePage() {
     for (const key of requiredFields) {
       const value = preDimFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
     }
 
     if (formData.largeurPoteau > formData.longueurPoteau) {
+      setErrorTitle('Erreur de saisie');
       setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
       return false;
     }
@@ -104,6 +112,7 @@ export default function SemellePage() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrorMessage(null);
+    setErrorTitle(null);
     setResults(null);
   };
 
@@ -123,17 +132,20 @@ export default function SemellePage() {
     for (const key of requiredFields) {
       const value = formData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
     }
 
     if (formData.largeur > formData.longueur) {
+      setErrorTitle('Erreur de saisie');
       setErrorMessage("La largeur de la semelle doit être inferieur à la longueur de la semelle.");
       return false;
     }
 
     if (formData.largeurPoteau > formData.longueurPoteau) {
+      setErrorTitle('Erreur de saisie');
       setErrorMessage("La largeur du poteau doit être inferieur à la longueur du poteau.");
       return false;
     }
@@ -180,12 +192,14 @@ export default function SemellePage() {
     const { name, value } = e.target;
     setFerrFormData({ ...ferrFormData, [name]: value });
     setErrorMessage(null);
+    setErrorTitle(null);
     setFerrResults(null);
   };
 
   const handleElementsChange = (updated: typeof elements) => {
     setElements(updated);
     setErrorMessage(null);
+    setErrorTitle(null);
     setFerrResults(null);
   };
 
@@ -196,6 +210,7 @@ export default function SemellePage() {
     for (const key of requiredFields) {
       const value = ferrFormData[key];
       if (!value || value.trim() === '' || isNaN(Number(value))) {
+        setErrorTitle('Erreur de saisie');
         setErrorMessage('Tous les champs doivent être remplis avec des nombres valides.');
         return false;
       }
@@ -226,6 +241,12 @@ export default function SemellePage() {
       <h1 className="text-4xl font-bold mb-10 text-center">
         Calcul Béton Armé - Semelle isolée (BAEL 91 mod 99)
       </h1>
+
+      <ErrorToast 
+        message={errorMessage} 
+        onClose={() => setErrorMessage(null)} 
+        title={errorTitle}
+      />
 
       <div className="flex flex-col lg:flex-row lg:space-x-10">
         
@@ -273,7 +294,6 @@ export default function SemellePage() {
               formData={preDimFormData}
               onChange={handlePreDimChange}
               onSubmit={handlePreDimSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -305,31 +325,51 @@ export default function SemellePage() {
               <ResultatsPreDimSemelle results={preDimResults}/>
             </div>
 
-            {preDimResults && (
+            <AnimatePresence>
+              {preDimResults && (
+                <motion.div 
 
-              <div className='mt-10 lg:mt-4 flex justify-center lg:justify-end'>
-                <button 
-                  className="text-black hover:text-blue-600 transition cursor-pointer font-semibold"
-                  onClick={() => {
-                  setFormData?.((prev) => ({
-                    ...prev,
-                    largeur: preDimResults?.A?.toString() ?? '',
-                    longueur: preDimResults?.B?.toString() ?? '',
-                    largeurPoteau: preDimFormData?.largeurPoteau?.toString() ?? '',
-                    longueurPoteau: preDimFormData?.longueurPoteau?.toString() ?? '',
-                    hauteur: preDimResults?.D?.toString() ?? '',
-                    contrainte: preDimFormData?.contrainte?.toString() ?? '',
-                    Nser: preDimFormData?.Nser?.toString() ?? '',
-                  }));
-                  setActiveTab?.('dim');
-                }
-              }
+                /* Animation d'entrée : part de 50px vers le bas et invisible */
+                initial={{ y: 50, opacity: 0 }}
+                /* Animation d'état actif : revient à sa place et devient visible */
+                animate={{ y: 0, opacity: 1 }}
+                /* Animation de sortie : repart vers le bas quand results disparait */
+                exit={{ y: 50, opacity: 0 }}
+                /* Réglage de la fluidité (type "ressort" pour un côté pro) */
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+
+                className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
                 >
-                  Exporter vers dimensionnement →
-                </button>
-              </div>
-              
-            )}
+                  {/* Texte informatif */}
+                  <div className="text-sm">
+                    <span className="font-bold text-blue-600 block">Calcul terminé !</span>
+                    <p className="text-gray-500">
+                      Section suggérée : <span className="font-semibold text-gray-700">{preDimResults.A} × {preDimResults.B} m</span>
+                    </p>
+                  </div>
+
+                  {/* Bouton d'action avec ta logique de transfert */}
+                  <button 
+                    onClick={() => {
+                      setFormData?.((prev) => ({
+                        ...prev,
+                        largeur: preDimResults?.A?.toString() ?? '',
+                        longueur: preDimResults?.B?.toString() ?? '',
+                        largeurPoteau: preDimFormData?.largeurPoteau?.toString() ?? '',
+                        longueurPoteau: preDimFormData?.longueurPoteau?.toString() ?? '',
+                        hauteur: preDimResults?.D?.toString() ?? '',
+                        contrainte: preDimFormData?.contrainte?.toString() ?? '',
+                        Nser: preDimFormData?.Nser?.toString() ?? '',
+                      }));
+                      setActiveTab?.('dim');
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Dimensionner la section
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
         )}

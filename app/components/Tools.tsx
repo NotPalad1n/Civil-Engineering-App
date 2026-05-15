@@ -44,12 +44,12 @@ const Geotools = [
     href: '/geotechnique/correlations',
     icon: <EqualApproximately className="w-6 h-6" />
   },
-  {
-    title: 'Fondations',
-    description: 'Calcul de la capacité portante et des tassements des fondations superficielles.',
-    href: '/geotechnique/fondation',
-    icon: <FootingIcon className="w-8 h-8" />
-  }
+  // {
+  //   title: 'Fondations',
+  //   description: 'Calcul de la capacité portante et des tassements des fondations superficielles.',
+  //   href: '/geotechnique/fondation',
+  //   icon: <FootingIcon className="w-8 h-8" />
+  // }
 ];
 
 export default function Tools() {

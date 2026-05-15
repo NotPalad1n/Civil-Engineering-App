@@ -10,6 +10,10 @@ export interface PreDimResults {
   B: number;
   D: number;
   H: number;
+
+  a: number;
+  b: number;
+  sigma: number;
 }
 
 export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {  
@@ -24,8 +28,9 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
     let D = 0;
     let H = 0;
 
-    B = Math.sqrt(b / a * Nser / sigma);
-    A = Math.sqrt(a / b * Nser / sigma);
+    // le 0.05 c'est juste forfitaire pour que la contrainte soit verifiée
+    B = Math.sqrt(b / a * Nser / sigma) + 0.05; 
+    A = Math.sqrt(a / b * Nser / sigma) + 0.05;
 
     const d1 = Math.min(A - a, B - b);
     const d2 = Math.min((A - a) / 4, (B - b) / 4);
@@ -43,5 +48,8 @@ export function calculerPreDimResultats(data: PreDimFormData): PreDimResults {
       B: parseFloat(B.toFixed(2)),
       D: parseFloat(D.toFixed(2)),
       H: parseFloat(H.toFixed(2)),
+      a: parseFloat(a.toFixed(2))*100,
+      b: parseFloat(b.toFixed(2))*100,
+      sigma: parseFloat(sigma.toFixed(2)),
     };
 }

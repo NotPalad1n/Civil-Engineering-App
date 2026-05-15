@@ -150,7 +150,8 @@ export default function PlotCohesionND({ correlation, userPl1, userPl2, userIC }
     maintainAspectRatio: false,
     plugins: {
       datalabels: {
-        display: (context) => context.dataset.label === 'Valeur utilisateur',
+        // display: (context) => context.dataset.label === 'Valeur utilisateur', 
+        display: false,
         color: 'red',
         font: {
           weight: 'bold',

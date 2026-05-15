@@ -9,15 +9,15 @@ const FOOTER_LINKS = {
     { name: "À propos", href: "/about" },
   ],
   bael: [
-    { name: "Dalle en béton", href: "/bael/dalle" },
-    { name: "Poutre en béton", href: "/bael/poutre" },
-    { name: "Poteau en béton", href: "/bael/poteau" },
-    { name: "Semelle isolée", href: "/bael/semelle-isolee" },
-    { name: "Semelle filante", href: "/bael/semelle-filante" },
+    { name: "Dalle pleine", href: "/bael/dalle" },
+    { name: "Poutre en béton armé", href: "/bael/poutre" },
+    { name: "Poteau en béton armé", href: "/bael/poteau" },
+    { name: "Semelle isolée centrée", href: "/bael/semelle-isolee" },
+    { name: "Semelle filante centrée", href: "/bael/semelle-filante" },
   ],
   geotechnique: [
     { name: "Corrélations", href: "/geotechnique/correlations" },
-    { name: "Fondation", href: "/geotechnique/fondation" },
+    // { name: "Fondation", href: "/geotechnique/fondation" },
   ]
 };
 

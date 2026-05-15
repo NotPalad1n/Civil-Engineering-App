@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Calculator, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -65,7 +65,7 @@ export default function Hero() {
         >
           <Link href="#tools">
             <button className="group bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-blue-200 transition-all duration-300 flex items-center gap-3 active:scale-95 cursor-pointer">
-              <Calculator className="w-5 h-5" />
+              
               Commencer les calculs
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>

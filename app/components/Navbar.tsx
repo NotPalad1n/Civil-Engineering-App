@@ -14,7 +14,7 @@ const NAV_LINKS = {
   ],
   geo: [
     { name: "Corrélations", href: "/geotechnique/correlations" },
-    { name: "Fondation", href: "/geotechnique/fondation" },
+    // { name: "Fondation", href: "/geotechnique/fondation" },
   ]
 };
 
