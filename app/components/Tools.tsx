@@ -1,8 +1,9 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import ToolCard from './ToolCard';
-
 import { SlabIcon, BeamIcon, ColumnIcon, FootingIcon, StripFootingIcon } from './Icons/StructuralIcons';
-import { EqualApproximately} from 'lucide-react';
-
+import { EqualApproximately } from 'lucide-react';
 
 const BAELtools = [
   {
@@ -43,52 +44,118 @@ const Geotools = [
     description: 'Estimation des paramètres mécaniques à partir des essais in-situ.',
     href: '/geotechnique/correlations',
     icon: <EqualApproximately className="w-6 h-6" />
-  },
-  // {
-  //   title: 'Fondations',
-  //   description: 'Calcul de la capacité portante et des tassements des fondations superficielles.',
-  //   href: '/geotechnique/fondation',
-  //   icon: <FootingIcon className="w-8 h-8" />
-  // }
+  }
 ];
+
+// Configuration de l'animation pour les conteneurs de grille
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1 // Délai entre l'apparition de chaque carte
+    }
+  }
+};
+
+// Configuration de l'animation pour chaque carte individuelle
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
 
 export default function Tools() {
   return (
     <section className="py-24 bg-white" id="tools">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Titre de la section */}
+        {/* En-tête de section avec petit titre bleu */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Bibliothèque d'outils</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto">
+          <motion.span 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-blue-600 font-black uppercase tracking-[0.2em] text-xs block mb-4"
+          >
+            Nos Modules
+          </motion.span>
+
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
+          >
+            Bibliothèque d'outils
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-500 max-w-2xl mx-auto"
+          >
             Des modules de calcul précis conformes aux règlements en vigueur pour optimiser vos projets de structure.
-          </p>
+          </motion.p>
         </div>
 
         {/* Section BAEL */}
         <div className="mb-20">
-          <div className="flex items-center space-x-3 mb-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center space-x-3 mb-8"
+          >
             <div className="h-8 w-1.5 bg-blue-600 rounded-full" />
             <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wider">BAEL 91 mod 99</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          </motion.div>
+
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {BAELtools.map((tool) => (
-              <ToolCard key={tool.title} {...tool} />
+              <motion.div key={tool.title} variants={itemVariants}>
+                <ToolCard {...tool} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Section Géotechnique */}
         <div>
-          <div className="flex items-center space-x-3 mb-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center space-x-3 mb-8"
+          >
             <div className="h-8 w-1.5 bg-blue-400 rounded-full" />
             <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wider">Géotechnique</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          </motion.div>
+
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {Geotools.map((tool) => (
-              <ToolCard key={tool.title} {...tool} />
+              <motion.div key={tool.title} variants={itemVariants}>
+                <ToolCard {...tool} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </div>

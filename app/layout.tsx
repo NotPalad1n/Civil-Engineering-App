@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={`${RubikFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll`}>
         <InputScrollBlocker />
         <ScrollToTop />    
