@@ -34,7 +34,7 @@ export default function ResultatsPreDimSemelle({ results }: ResultatsSemelleProp
           {/* I. Dimensions du poteau : */}
           <section className="w-full">
             <div className="text-left text-gray-800 font-bold mb-2 border-l-4 border-blue-600 pl-2">
-              <InlineMath math={`\\text{I. Dimensions du poteau : :}`} />
+              <InlineMath math={`\\text{I. Dimensions du poteau :}`} />
             </div>
             <div className="flex flex-col items-center bg-gray-50 py-3 rounded">
               <InlineMath math={`a = ${results.a}~\\text{cm ; } b = ${results.b}~\\text{cm}`} />
@@ -44,7 +44,7 @@ export default function ResultatsPreDimSemelle({ results }: ResultatsSemelleProp
           {/* II. Contrainte admissible du sol */}
           <section className="w-full">
             <div className="text-left text-gray-800 font-bold mb-2 border-l-4 border-blue-600 pl-2">
-              <InlineMath math={`\\text{II. Contrainte admissible du sol}`} />
+              <InlineMath math={`\\text{II. Contrainte admissible du sol :}`} />
             </div>
             <div className="text-center bg-gray-50 py-3 rounded">
               <InlineMath math={`\\sigma_{ser} = ${results.sigma}~\\text{MPa}`} />
@@ -59,7 +59,7 @@ export default function ResultatsPreDimSemelle({ results }: ResultatsSemelleProp
             <div className="flex flex-col items-center bg-gray-50 py-3 rounded">
               <InlineMath math={`A = ${results.A}~\\text{m ; } B = ${results.B}~\\text{m}`} />
               <InlineMath math={`H = ${results.H}~\\text{m}`} />
-              <InlineMath math={`D = ${results.D}~\\text{m}`} />
+              <InlineMath math={`d = ${results.D}~\\text{m}`} />
             </div>
           </section>
             

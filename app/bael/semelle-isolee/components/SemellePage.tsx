@@ -285,7 +285,6 @@ export default function SemellePage() {
               formData={formData}
               onChange={handleChange}
               onSubmit={handleSubmit}
-              errorMessage={errorMessage}
             />
           )}
 
@@ -313,10 +312,62 @@ export default function SemellePage() {
         <div className="hidden lg:block w-px bg-gray-300"></div>
 
         {activeTab === 'dim' && (
-          <div className='w-full lg:w-1/2 min-h-full'>
-            <ResultatsSemelle results={results} />
+
+          <div className='lg:w-1/2 flex flex-col'>
+
+            <div className='w-full min-h-full'>
+              <ResultatsSemelle results={results} />
+            </div>
+
+            <AnimatePresence>
+              {results && !results.warning && (
+                <motion.div 
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 50, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+                >
+                  {/* Résumé des sections d'acier de la semelle */}
+                  <div className="flex flex-col">
+                    <span className="font-bold text-blue-600 block text-sm">Calcul terminé !</span>
+                    <div className="flex space-x-4 text-[11px] mt-1">
+                      <p className="text-gray-500">
+                        Aciers // A : <span className="font-semibold text-gray-700">{results.Asx} cm²</span>
+                      </p>
+                      <div className="hidden lg:block w-px bg-gray-300"></div>
+                      <p className="text-gray-500">
+                        Aciers // B : <span className="font-semibold text-gray-700">{results.Asy} cm²</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action de transfert vers le ferraillage */}
+                  <button 
+                    onClick={() => {
+                      // Si ton formulaire de ferraillage prend une valeur par défaut,
+                      // tu peux lui passer la section maximale par exemple :
+                      setFerrFormData?.((prev) => ({
+                        ...prev,
+                        As: Math.max(results.Asx, results.Asy).toString(),
+                      }));
+                      
+                      setActiveTab?.('ferr');
+                      // Scroller doucement vers le haut pour voir le nouveau formulaire
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                  >
+                    Configurer le ferraillage
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
           </div>
+
         )}
+
         {activeTab === 'predim' && (
 
           <div className='lg:w-1/2 flex flex-col'>

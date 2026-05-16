@@ -10,11 +10,26 @@ export interface FormData {
   fe: number;
 }
 
+export interface WarningSol {
+  sigmaSol: number;
+  limit: number;
+}
+
 export interface BaseResults {
   Asx: number;
   Asy: number;
 
   message?: string;
+  warning?: WarningSol;
+
+  A: number;
+  B: number;
+  D: number;
+  H: number;
+
+  a: number;
+  b: number;
+  sigma: number;
 }
 
 export function calculerBaseResultats(data: FormData): BaseResults {
@@ -23,6 +38,7 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   const a = data.largeurPoteau / 100; // m
   const b = data.longueurPoteau / 100; // m
   const d = data.hauteur; // m
+  const H = d + 0.05; // m
   const Nu = data.Nu / 1000; // MN
   const Nser = data.Nser / 1000; // MN
   const contrainte = data.contrainte; // MPa
@@ -36,13 +52,17 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   let message = '';
 
   const Pp = A*B*h*25/1000; // MN
-  
-  if ((Nser + Pp) / (A * B) > contrainte) 
-  {
-    message = "La contrainte admissible du sol est dépassée.";
-  }
-  else if ((Nser + Pp) / (A * B) <= contrainte) 
-  {
+  const sigmaSol = (Nser + Pp) / (A * B); // MPa
+
+  let warning: WarningSol | undefined = undefined; // Initialisé à undefined par défaut
+
+  // 4. Logique de vérification de la contrainte
+  if (sigmaSol > contrainte) {
+    warning = {
+      sigmaSol: parseFloat(sigmaSol.toFixed(2)),
+      limit: parseFloat(contrainte.toFixed(2))
+    };
+  } else {
     message = "La contrainte admissible du sol est vérifiée.";
   }
 
@@ -50,5 +70,14 @@ export function calculerBaseResultats(data: FormData): BaseResults {
     Asx: parseFloat(Asx.toFixed(2)),
     Asy: parseFloat(Asy.toFixed(2)),
     message: message,
+    warning,
+
+    A: parseFloat(A.toFixed(2)),
+    B: parseFloat(B.toFixed(2)),
+    D: parseFloat(d.toFixed(2)),
+    H: parseFloat(H.toFixed(2)),
+    a: parseFloat(a.toFixed(2))*100,
+    b: parseFloat(b.toFixed(2))*100,
+    sigma: parseFloat(contrainte.toFixed(2)),
   };
 }

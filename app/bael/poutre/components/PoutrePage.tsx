@@ -310,7 +310,7 @@ export default function PoutrePage() {
 
                 >
                   {/* Résumé des 4 sections */}
-                  <div className="flex flex-col border-r-0 lg:border-r border-gray-100 pr-0">
+                  <div className="flex flex-col">
                     <span className="font-bold text-blue-600 block text-sm">Calcul terminé !</span>
                     <div className="flex space-x-4 text-[11px]">
                       <p className="text-gray-500">ELU: <span className="font-semibold text-gray-700">{results.Ast} / {results.Asc} cm²</span></p>
