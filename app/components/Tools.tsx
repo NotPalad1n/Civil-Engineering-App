@@ -59,7 +59,7 @@ export default function Tools() {
         
         {/* Titre de la section */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">Bibliothèque d'outils</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Bibliothèque d'outils</h2>
           <p className="text-slate-500 max-w-2xl mx-auto">
             Des modules de calcul précis conformes aux règlements en vigueur pour optimiser vos projets de structure.
           </p>
