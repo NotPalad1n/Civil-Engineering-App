@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import ToolCard from './ToolCard';
 import { SlabIcon, BeamIcon, ColumnIcon, FootingIcon, StripFootingIcon } from './Icons/StructuralIcons';
 import { EqualApproximately } from 'lucide-react';
@@ -48,23 +48,23 @@ const Geotools = [
 ];
 
 // Configuration de l'animation pour les conteneurs de grille
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1 // Délai entre l'apparition de chaque carte
+      staggerChildren: 0.1
     }
   }
 };
 
 // Configuration de l'animation pour chaque carte individuelle
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: "easeOut" } // Désormais TS sait que c'est une transition valide
   }
 };
 
