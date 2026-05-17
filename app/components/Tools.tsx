@@ -47,7 +47,6 @@ const Geotools = [
   }
 ];
 
-// Configuration de l'animation pour les conteneurs de grille
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -58,28 +57,29 @@ const containerVariants: Variants = {
   }
 };
 
-// Configuration de l'animation pour chaque carte individuelle
 const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" } // Désormais TS sait que c'est une transition valide
+    transition: { duration: 0.5, ease: "easeOut" }
   }
 };
 
 export default function Tools() {
   return (
-    <section className="py-24 bg-white" id="tools">
+    // bg-white -> dark:bg-slate-950
+    <section className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300" id="tools">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* En-tête de section avec petit titre bleu */}
+        {/* En-tête de section */}
         <div className="text-center mb-20">
           <motion.span 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-blue-600 font-black uppercase tracking-[0.2em] text-xs block mb-4"
+            // text-blue-600 -> dark:text-blue-400
+            className="text-blue-600 dark:text-blue-600 font-black uppercase tracking-[0.2em] text-xs block mb-4"
           >
             Nos Modules
           </motion.span>
@@ -88,7 +88,8 @@ export default function Tools() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
+            // text-slate-900 -> dark:text-slate-50
+            className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 mb-4 tracking-tight transition-colors duration-300"
           >
             Bibliothèque d'outils
           </motion.h2>
@@ -98,7 +99,8 @@ export default function Tools() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-500 max-w-2xl mx-auto"
+            // text-slate-500 -> dark:text-slate-400
+            className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-300"
           >
             Des modules de calcul précis conformes aux règlements en vigueur pour optimiser vos projets de structure.
           </motion.p>
@@ -113,7 +115,10 @@ export default function Tools() {
             className="flex items-center space-x-3 mb-8"
           >
             <div className="h-8 w-1.5 bg-blue-600 rounded-full" />
-            <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wider">BAEL 91 mod 99</h3>
+            {/* text-slate-800 -> dark:text-slate-200 */}
+            <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider transition-colors duration-300">
+              BAEL 91 mod 99
+            </h3>
           </motion.div>
 
           <motion.div 
@@ -139,8 +144,11 @@ export default function Tools() {
             viewport={{ once: true }}
             className="flex items-center space-x-3 mb-8"
           >
-            <div className="h-8 w-1.5 bg-blue-400 rounded-full" />
-            <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wider">Géotechnique</h3>
+            <div className="h-8 w-1.5 bg-blue-600 rounded-full" />
+            {/* text-slate-800 -> dark:text-slate-200 */}
+            <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider transition-colors duration-300">
+              Géotechnique
+            </h3>
           </motion.div>
 
           <motion.div 

@@ -8,30 +8,33 @@ const FEATURES = [
     title: 'Calculs de ferraillage',
     description: 'Outils simples pour dimensionner les armatures des poteaux, poutres, dalles et semelles.',
     icon: <Calculator className="w-8 h-8" />,
-    color: 'bg-blue-50 text-blue-600',
-    dotColor: 'bg-blue-600'
+    // Enrichissement avec les classes dark pour l'icône et la ligne de survol
+    color: 'bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400',
+    dotColor: 'bg-blue-600 dark:bg-blue-400'
   },
   {
     title: 'Interface intuitive',
     description: 'Une interface claire et fluide adaptée aux étudiants, techniciens et ingénieurs.',
     icon: <Layout className="w-8 h-8" />,
-    color: 'bg-indigo-50 text-indigo-600',
-    dotColor: 'bg-indigo-600'
+    color: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400',
+    dotColor: 'bg-indigo-600 dark:bg-indigo-400'
   },
   {
     title: 'Accès en ligne',
     description: 'Tous les outils sont disponibles directement dans le navigateur, sans installation.',
     icon: <Globe className="w-8 h-8" />,
-    color: 'bg-emerald-50 text-emerald-600',
-    dotColor: 'bg-emerald-600'
+    color: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400',
+    dotColor: 'bg-emerald-600 dark:bg-emerald-400'
   }
 ];
 
 export default function WhatWeProvide() {
   return (
-    <section className="bg-slate-50/50 py-24 px-6 relative overflow-hidden">
-      {/* Grille technique en arrière-plan (discrète) */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+    // Alternance de fond propre : slate-50/50 (light) -> slate-900/70 (dark)
+    <section className="bg-slate-50/50 dark:bg-slate-900/70 py-24 px-6 relative overflow-hidden transition-colors duration-300">
+      
+      {/* Grille technique en arrière-plan (Ajustement de l'opacité pour le mode sombre) */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
         <div 
           className="h-full w-full" 
           style={{ 
@@ -43,13 +46,13 @@ export default function WhatWeProvide() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* En-tête basé sur l'image */}
+        {/* En-tête */}
         <div className="text-center mb-20">
           <motion.span 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-blue-600 font-black uppercase tracking-[0.2em] text-xs block mb-4"
+            className="text-blue-600 dark:text-blue-600 font-black uppercase tracking-[0.2em] text-xs block mb-4"
           >
             Notre Expertise
           </motion.span>
@@ -58,7 +61,8 @@ export default function WhatWeProvide() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight"
+            // Adaptation du titre principal text-slate-900 -> dark:text-slate-50
+            className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 tracking-tight transition-colors duration-300"
           >
             Une solution complète pour vos projets
           </motion.h1>
@@ -73,9 +77,10 @@ export default function WhatWeProvide() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
-              className="group flex flex-col items-center text-center p-8 rounded-3xl transition-all duration-300 hover:bg-slate-50/80"
+              // Effet de survol sur la carte adapté en mode sombre (hover:bg-slate-800/50)
+              className="group flex flex-col items-center text-center p-8 rounded-3xl transition-all duration-300 hover:bg-slate-50/80 dark:hover:bg-slate-800/50"
             >
-              {/* Icône avec couleur spécifique */}
+              {/* Icône avec couleur dynamique chargée depuis le tableau FEATURES */}
               <div className={`relative w-20 h-20 flex items-center justify-center rounded-2xl mb-8 transition-transform duration-500 group-hover:scale-110 ${feature.color}`}>
                 <div className="absolute inset-0 rounded-2xl opacity-20 group-hover:scale-150 group-hover:opacity-0 transition-all duration-700 bg-current" />
                 <div className="relative z-10">
@@ -83,11 +88,13 @@ export default function WhatWeProvide() {
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold text-slate-800 mb-4 tracking-tight">
+              {/* Titre de la carte : text-slate-800 -> dark:text-slate-200 */}
+              <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4 tracking-tight transition-colors duration-300">
                 {feature.title}
               </h3>
               
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base max-w-[280px]">
+              {/* Description : text-slate-500 -> dark:text-slate-400 */}
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-sm md:text-base max-w-[280px] transition-colors duration-300">
                 {feature.description}
               </p>
 
