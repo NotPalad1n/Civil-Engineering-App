@@ -29,6 +29,19 @@ export default function Navbar() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
 
+  // FIX 1 : Bloquer le défilement de l'arrière-plan quand le menu mobile est ouvert
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    // Nettoyage si le composant est démonté inopinément
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   // Gestion de la réduction au scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +62,10 @@ export default function Navbar() {
           : "py-4 border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto h-16 px-6 flex justify-between items-center">
+      {/* FIX 2 : Ajout de "relative z-[140]" sur cette ligne. 
+        Cela force le Logo, le bouton thème et la croix de fermeture à rester VISIBLES au-dessus du menu.
+      */}
+      <div className="max-w-7xl mx-auto h-16 px-6 flex justify-between items-center relative z-[140]">
         
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 group">
@@ -140,7 +156,7 @@ export default function Navbar() {
 
           <button 
             onClick={() => setMenuOpen(!menuOpen)} 
-            className="p-2 text-slate-900 dark:text-slate-50 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-colors relative z-[140]"
+            className="p-2 text-slate-900 dark:text-slate-50 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-colors relative"
           >
             {menuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
@@ -155,7 +171,10 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="fixed inset-0 bg-white dark:bg-slate-950 z-[120] pt-24 px-6 md:hidden flex flex-col overflow-y-auto pb-12 transition-colors duration-300"
+            /* Changement mineur ici : passage de pt-24 à pt-28 pour descendre légèrement 
+              la liste des liens et éviter qu'ils ne se collent au bloc logo fixe juste au-dessus.
+            */
+            className="fixed inset-0 bg-white dark:bg-slate-950 z-[120] pt-28 px-6 md:hidden flex flex-col overflow-y-auto pb-12 transition-colors duration-300"
           >
             <div className="space-y-8 text-left">
               
