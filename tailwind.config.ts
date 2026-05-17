@@ -1,10 +1,11 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class', // <-- Activé correctement ici !
   content: [
-    './app/**/*.{ts,tsx}',        // App Router pages
-    './pages/**/*.{ts,tsx}',      // If you're using Pages Router too
-    './components/**/*.{ts,tsx}', // Any reusable components
+    './app/**/*.{ts,tsx}',        
+    './pages/**/*.{ts,tsx}',      
+    './components/**/*.{ts,tsx}', 
   ],
   theme: {
     extend: {

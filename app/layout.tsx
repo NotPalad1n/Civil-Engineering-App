@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 
 import InputScrollBlocker from "./components/InputScrollBlocker";
 import ScrollToTop from "./components/ScrollToTop";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 // import { Outfit } from "next/font/google";
 
@@ -33,13 +34,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${RubikFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll`}>
-        <InputScrollBlocker />
-        <ScrollToTop />    
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
+      <ThemeProvider>
+        <body className={`${RubikFont.className} flex flex-col justify-between min-h-screen overflow-y-scroll bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 antialiased`}>
+          <InputScrollBlocker />
+          <ScrollToTop />   
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
