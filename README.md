@@ -53,13 +53,13 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/NotPalad1n/Civil-Engineering-App/tree/master
    ```
 
 2. Navigate into the project directory:
 
    ```bash
-   cd your-repo-name
+   cd Civil-Engineering-App
    ```
 
 3. Install the dependencies:
