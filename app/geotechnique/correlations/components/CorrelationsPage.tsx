@@ -147,8 +147,8 @@ export default function CorrelationsPage() {
   //
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
-      <h1 className="text-4xl font-bold mb-10 text-center">
+    <main className="max-w-6xl mx-auto px-4 py-10 mb-10 transition-colors duration-300">
+      <h1 className="text-3xl md:text-4xl font-bold mb-10 text-center text-slate-900 dark:text-slate-50 tracking-tight transition-colors duration-300">
         Corrélations en géotechnique
       </h1>
 
@@ -160,16 +160,16 @@ export default function CorrelationsPage() {
 
             <button
               onClick={() => setActiveTab('AngleFrottement')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
-              ${activeTab === 'AngleFrottement' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35 transition-all duration-200
+              ${activeTab === 'AngleFrottement' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
             >
               Angle de Frottement
             </button>
 
             <button
               onClick={() => setActiveTab('CohesionND')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
-              ${activeTab === 'CohesionND' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35 transition-all duration-200
+              ${activeTab === 'CohesionND' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
             >
               Cohésion non drainée
             </button>
@@ -195,7 +195,7 @@ export default function CorrelationsPage() {
 
         </div>
 
-        <div className="hidden lg:block w-px bg-gray-300"></div>
+        <div className="hidden lg:block w-px bg-slate-200 dark:bg-slate-800 transition-colors duration-300"></div>
 
         {activeTab === 'AngleFrottement' && (
           <div className='w-full lg:w-1/2 min-h-full'>

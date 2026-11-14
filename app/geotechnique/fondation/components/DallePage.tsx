@@ -22,8 +22,8 @@ export default function DallePage() {
   //
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
-      <h1 className="text-4xl font-bold mb-10 text-center">
+    <main className="max-w-6xl mx-auto px-4 py-10 mb-10 transition-colors duration-300">
+      <h1 className="text-3xl md:text-4xl font-bold mb-10 text-center text-slate-900 dark:text-slate-50 tracking-tight transition-colors duration-300">
         Fondation Superficielle
       </h1>
 
@@ -35,7 +35,7 @@ export default function DallePage() {
         />
       <button
         onClick={handleSubmit}
-        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition font-semibold"
+        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition font-semibold cursor-pointer shadow-sm"
       >
         Soumettre
       </button>

@@ -77,13 +77,17 @@ export default function PlotAngleFrottement({ correlation, userPl, userIp }: Plo
     }
   }
 
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+  const textColor = isDark ? '#cbd5e1' : '#475569';
+  const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)';
+
   const chartData: ChartData<'line'> = {
     datasets: [
       {
         label: 'Valeurs de φ',
         data: dataPoints,
-        borderColor: '#155DFC',
-        backgroundColor: '#155DFC',
+        borderColor: '#2563eb',
+        backgroundColor: '#2563eb',
         fill: false,
         tension: 0.3,
         pointRadius: 0,
@@ -95,7 +99,7 @@ export default function PlotAngleFrottement({ correlation, userPl, userIp }: Plo
             {
               label: 'Valeur utilisateur',
               data: [userPoint],
-              backgroundColor: 'red',
+              backgroundColor: '#ef4444',
               pointRadius: 6,
               pointHoverRadius: 6,
               order: 1,
@@ -149,16 +153,29 @@ export default function PlotAngleFrottement({ correlation, userPl, userIp }: Plo
         type: 'linear',
         title: { 
           display: true, 
-          text: xLabel 
+          text: xLabel,
+          color: textColor,
+        },
+        ticks: {
+          color: textColor,
+        },
+        grid: {
+          color: gridColor,
         },
         min: xMin,
         max: xMax,
-        
       },
       y: {
         title: { 
           display: true, 
-          text: 'φ (°)' 
+          text: 'φ (°)',
+          color: textColor,
+        },
+        ticks: {
+          color: textColor,
+        },
+        grid: {
+          color: gridColor,
         },
         min: yMin,
         max: yMax,

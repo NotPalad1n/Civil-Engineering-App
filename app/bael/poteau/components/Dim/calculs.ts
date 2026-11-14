@@ -6,12 +6,15 @@ export interface FormData {
   Nu: number;
   fc28: number;
   fe: number;
+  dispositionSismique?: string;
 }
 
 export interface BaseResults {
   Ath: number;
   As: number;
   Amin: number;
+  AminRps?: number;
+  dispositionSismique?: string;
   Amax: number;
   lambda: number;
   largeur: number;
@@ -55,13 +58,25 @@ export function calculerBaseResultats(data: FormData): BaseResults {
   const Amin = Math.max(A1, A2);
   const Amax = 5/100 * a * b * 10000;
 
-  const As = Math.max(Ath, Amin); // cm² armature requise
+  const isRps = data.dispositionSismique === 'rps2011';
+  let AminRps: number | undefined = undefined;
+  let As: number;
+
+  if (isRps) {
+    AminRps = (1 / 100) * (largeur * longueur); // 1% de la section de béton
+    As = Math.min(Amax, Math.max(Ath, Amin, AminRps));
+  } else {
+    As = Math.min(Amax, Math.max(Ath, Amin));
+  }
+
   const ratio = As/(longueur * largeur)*100;
 
   return {
     lambda: parseFloat(lambda.toFixed(2)),
     Ath: parseFloat(Ath.toFixed(2)),
     Amin: parseFloat(Amin.toFixed(2)),
+    ...(AminRps !== undefined ? { AminRps: parseFloat(AminRps.toFixed(2)) } : {}),
+    dispositionSismique: data.dispositionSismique || 'aucun',
     Amax: parseFloat(Amax.toFixed(2)),
     As: parseFloat(As.toFixed(2)),
     largeur: parseFloat(largeur.toFixed(2)),

@@ -205,8 +205,8 @@ export default function DallePage() {
   //
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10 mb-10">
-      <h1 className="text-4xl font-bold mb-10 text-center">
+    <main className="max-w-6xl mx-auto px-4 py-10 mb-10 transition-colors duration-300">
+      <h1 className="text-3xl md:text-4xl font-bold mb-10 text-center text-slate-900 dark:text-slate-50 tracking-tight transition-colors duration-300">
         Calcul Béton Armé - Dalle pleine (BAEL 91 mod 99)
       </h1>
 
@@ -224,24 +224,24 @@ export default function DallePage() {
 
             <button
               onClick={() => setActiveTab('predim')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
-              ${activeTab === 'predim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35 transition-all duration-200
+              ${activeTab === 'predim' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
             >
               Pré-dimensionnement
             </button>
 
             <button
               onClick={() => setActiveTab('dim')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35
-              ${activeTab === 'dim' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-35 transition-all duration-200
+              ${activeTab === 'dim' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
             >
               Dimensionnement
             </button>
 
             <button
               onClick={() => setActiveTab('ferr')}
-              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38
-              ${activeTab === 'ferr' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`px-2 py-2 rounded font-semibold cursor-pointer text-xs min-w-38 transition-all duration-200
+              ${activeTab === 'ferr' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300'}`}
             >
               Ferraillage
             </button>
@@ -277,7 +277,7 @@ export default function DallePage() {
 
         </div>
 
-        <div className="hidden lg:block w-px bg-gray-300"></div>
+        <div className="hidden lg:block w-px bg-slate-200 dark:bg-slate-800 transition-colors duration-300"></div>
 
         {activeTab === 'dim' && (
 
@@ -294,16 +294,16 @@ export default function DallePage() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 50, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+                  className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-900 shadow-2xl border border-blue-100 dark:border-slate-800 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0 transition-colors duration-300"
 
                 >
                   {/* Résumé des 4 sections */}
-                  <div className="flex flex-col border-r-0 lg:border-r border-gray-100 pr-0">
-                    <span className="font-bold text-blue-600 block text-sm">Calcul terminé !</span>
+                  <div className="flex flex-col border-r-0 lg:border-r border-slate-200 dark:border-slate-800 pr-0 lg:pr-4">
+                    <span className="font-bold text-blue-600 dark:text-blue-400 block text-sm">Calcul terminé !</span>
                     <div className="flex space-x-4 text-[11px]">
-                      <p className="text-gray-500">ELU//x: <span className="font-semibold text-gray-700">{results.Astx} / {results.Ascx} cm²</span></p>
-                      <div className="hidden lg:block w-px bg-gray-300"></div>
-                      <p className="text-gray-500">ELU//y: <span className="font-semibold text-gray-700">{results.Asty} / {results.Ascy} cm²</span></p>
+                      <p className="text-slate-500 dark:text-slate-400">ELU//x: <span className="font-semibold text-slate-700 dark:text-slate-200">{results.Astx} / {results.Ascx} cm²</span></p>
+                      <div className="hidden lg:block w-px bg-slate-200 dark:bg-slate-800"></div>
+                      <p className="text-slate-500 dark:text-slate-400">ELU//y: <span className="font-semibold text-slate-700 dark:text-slate-200">{results.Asty} / {results.Ascy} cm²</span></p>
                     </div>
                   </div>
 
@@ -314,7 +314,7 @@ export default function DallePage() {
                       // Optionnel : Scroller vers le haut pour voir l'onglet
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer shadow-sm"
                   >
                     Configurer le ferraillage
                   </button>
@@ -347,13 +347,13 @@ export default function DallePage() {
                 /* Réglage de la fluidité (type "ressort" pour un côté pro) */
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
 
-                className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white shadow-2xl border border-blue-100 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0"
+                className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-900 shadow-2xl border border-blue-100 dark:border-slate-800 rounded-2xl p-4 lg:space-x-6 z-50 flex items-center justify-between lg:min-w-[500px] flex-col lg:flex-row text-center lg:text-left space-y-2 lg:space-y-0 transition-colors duration-300"
                 >
                   {/* Texte informatif */}
                   <div className="text-sm">
-                    <span className="font-bold text-blue-600 block">Calcul terminé !</span>
-                    <p className="text-gray-500">
-                      Épaisseur suggérée : <span className="font-semibold text-gray-700">{preDimResults.h} cm</span>
+                    <span className="font-bold text-blue-600 dark:text-blue-400 block">Calcul terminé !</span>
+                    <p className="text-slate-500 dark:text-slate-400">
+                      Épaisseur suggérée : <span className="font-semibold text-slate-700 dark:text-slate-200">{preDimResults.h} cm</span>
                     </p>
                   </div>
 
@@ -368,7 +368,7 @@ export default function DallePage() {
                       }));
                       setActiveTab?.('dim');
                     }}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors min-w-[233px] cursor-pointer shadow-sm"
                   >
                     Dimensionner la section
                   </button>

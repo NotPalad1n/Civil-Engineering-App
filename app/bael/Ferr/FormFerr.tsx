@@ -18,13 +18,15 @@ interface FormProps {
 
 export default function FormFerr({ formData, onChange, onSubmit, errorMessage, elements, setElements, }: FormProps) {
 
-  const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 h-10 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
+  const inputClass = 'w-full border border-slate-300 dark:border-slate-700 rounded px-3 py-2 h-10 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors duration-200 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
 
   return (
     <form onSubmit={onSubmit} className="flex-1 space-y-4">
 
       <div>
-          <label className="block mb-1">Section nécessaire A<sub>s</sub> (cm²)</label>
+          <label className="block mb-1 text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-300">
+            Section nécessaire A<sub>s</sub> (cm²)
+          </label>
           <input
           type="number"
           inputMode="decimal"
@@ -35,7 +37,7 @@ export default function FormFerr({ formData, onChange, onSubmit, errorMessage, e
           />
       </div>
 
-      <p className="block mb-1">Armatures</p>
+      <p className="block mb-1 text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-300">Armatures</p>
 
       <ListeArmatures
         elements={elements}
@@ -44,12 +46,12 @@ export default function FormFerr({ formData, onChange, onSubmit, errorMessage, e
 
       <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition font-semibold cursor-pointer"
+          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md transition font-semibold cursor-pointer shadow-sm"
       >
           Calculer
       </button>
 
-      {errorMessage && <p className="mt-4 text-red-600 text-center">{errorMessage}</p>}
+      {errorMessage && <p className="mt-4 text-red-600 dark:text-red-400 text-center">{errorMessage}</p>}
     </form>
   );
 }
