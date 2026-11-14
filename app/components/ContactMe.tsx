@@ -60,7 +60,7 @@ export default function ContactMe() {
 
     return (
         // bg-white -> dark:bg-slate-950
-        <section className="bg-white dark:bg-slate-950 pb-24 transition-colors duration-300" id="contact">
+        <section className="bg-white dark:bg-slate-950 pb-24 transition-colors duration-300 overflow-hidden" id="contact">
 
             <ErrorToast 
                 message={errorMessage} 

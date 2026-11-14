@@ -7,7 +7,7 @@ import ContactMe from './components/ContactMe';
 export default function Home() {
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Hero />
       <WhatWeProvide />
       <Tools />

@@ -375,7 +375,7 @@ export default function PoteauPage() {
                     <div className="text-sm">
                       <span className="font-bold text-blue-600 dark:text-blue-400 block">Calcul terminé !</span>
                       <p className="text-slate-500 dark:text-slate-400">
-                        Section suggérée : <span className="font-semibold text-slate-700 dark:text-slate-200">{preDimResults.asq} × {preDimResults.bsq} cm</span>
+                        Section suggérée : <span className="font-semibold text-slate-700 dark:text-slate-200">{preDimResults.a} × {preDimResults.b} cm</span>
                       </p>
                     </div>
 
@@ -384,8 +384,8 @@ export default function PoteauPage() {
                       onClick={() => {
                         setFormData?.((prev) => ({
                           ...prev,
-                          largeur: preDimResults?.asq?.toString() ?? '',
-                          longueur: preDimResults?.bsq?.toString() ?? '',
+                          largeur: preDimResults?.a?.toString() ?? '',
+                          longueur: preDimResults?.b?.toString() ?? '',
                           Nu: preDimFormData?.Nu?.toString() ?? '',
                         }));
                         setActiveTab?.('dim');
